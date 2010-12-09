@@ -1,0 +1,11 @@
+[H[2JDetermining local host's IP... 192.168.1.100
+Stopping currently running instances... Done
+Lauching the web services... Starting grizzly...
+Starting grizzly...
+Done
+Launching the Discovery Service... Done
+Publishing the Interaction Model... Done
+Launching the traveler... Done
+Launching the travel agency... Done
+Launching the airLine... Done
+Launching the acquirer... Done

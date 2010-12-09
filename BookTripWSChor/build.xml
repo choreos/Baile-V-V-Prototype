@@ -1,0 +1,30 @@
+<project name="bookTripChor" default="jar">
+
+	<property name="bindir" value="./bin" />
+	<property name="srcdir" value="./src" />
+	<property name="libdir" value="./lib" />
+	<property name="build"  value="./build" />
+	<property name="jarname" value="${build}/BookTrip.jar" />
+	<property name="OK-kernel" value="${libdir}/ok.jar" />
+
+	<target name="compile" description="Compile all java classes" >
+		<mkdir dir="${bindir}" />
+		<javac destdir="${bindir}">
+		<src path="${srcdir}" />
+		<classpath>
+		<pathelement path="${OK-kernel}" />
+		</classpath>
+
+	</javac>
+	</target>
+
+	<target name="jar"  description="Package classes into a .jar file">
+		<mkdir dir="${build}" />
+		<jar destfile="${jarname}" basedir="${bindir}" />
+	</target>
+
+	<target name="clean" description="Remove all compilation products to ensure a clean build">
+		<delete dir="${bindir}" />
+		<delete file="${jarname}" />
+	</target>
+</project>
