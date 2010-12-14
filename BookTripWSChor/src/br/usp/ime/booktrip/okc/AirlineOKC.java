@@ -8,6 +8,8 @@ import org.openk.core.module.interpreter.Argument;
 import br.ime.usp.ws.airline.AirlineWS;
 import br.ime.usp.ws.airline.AirlineWSService;
 import br.ime.usp.ws.airline.FlightResult;
+import br.usp.ime.booktrip.utils.MessageTrace;
+import br.usp.ime.booktrip.utils.MessageTraceQueue;
 
 
 
@@ -21,6 +23,10 @@ public class AirlineOKC extends OKCFacadeImpl
 		service = new AirlineWSService();
 		stub = service.getAirlineWSPort();
 		
+		MessageTrace message = new MessageTrace("travelAgency", "airline", "search", Destination.getValue() + "|" + Date.getValue());
+
+		MessageTraceQueue queue = new MessageTraceQueue();
+		queue.add(message);
 		
 		String destination = Destination.getValue().toString();
 		String date = Date.getValue().toString();
@@ -43,6 +49,7 @@ public class AirlineOKC extends OKCFacadeImpl
 	}
 
 	public boolean createReserve(Argument FlightID, Argument TravelAgencyID, Argument ReserveCost) throws RemoteException{
+				
 		String flight = FlightID.getValue().toString();
 		String tAId = TravelAgencyID.getValue().toString();
 		
@@ -50,6 +57,7 @@ public class AirlineOKC extends OKCFacadeImpl
 		
 		ReserveCost.setValue(response);
 
+		
 		return true;	
 	}
 	
