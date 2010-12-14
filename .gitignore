@@ -1,3 +1,5 @@
 *.db
 BookTripWSChor/FreePastry-Storage-Root
 BookTripWSChor/log/*.log
+ChoreWS/lib/sqlitejdbc-v056.jar
+BookTripWSChor/lib/chore-ws_lib/sqlitejdbc-v056.jar

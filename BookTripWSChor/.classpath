@@ -38,7 +38,6 @@
 	<classpathentry kind="lib" path="lib/airline-client.jar"/>
 	<classpathentry kind="lib" path="lib/chore-ws.jar"/>
 	<classpathentry kind="lib" path="lib/resolver.jar"/>
-	<classpathentry kind="lib" path="lib/chore-ws_lib/sqlite-jdbc-3.7.2.jar"/>
 	<classpathentry kind="lib" path="lib/brestclient.jar"/>
 	<classpathentry kind="lib" path="lib/restclient_lib/groovy-1.7.5.jar"/>
 	<classpathentry kind="lib" path="lib/restclient_lib/httpclient-4.0.jar"/>
