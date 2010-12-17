@@ -140,6 +140,7 @@ public class Bash {
 	public static void cleanAllDataBases() {
 		cleanAcquirerDatabase();
 		cleanTravelAgencyDatabase();
+		cleanMessageTraceQueueDatabase();
 	}
 
 
