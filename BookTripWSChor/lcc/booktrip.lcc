@@ -147,7 +147,7 @@ a(airline, ID3) ::
      
 a(acquirer, ID4) ::
 	(
-     check(Reserve, Name, CcNumber, TotalPrice) <= a(travelAgency, ID2)
+     check(Reserve, Name, CcNumber, TotalPrice) <= a(travelAgency, ID2) <- check (Reserve, Name, CcNumber, TotalPrice)
 	     then
 	     (
 	     approval(Status, TravelAgencyPayment) => a(travelAgency, ID2) <- countPayments(Name, CcNumber, TotalPrice, Status, TravelAgencyPayment, AirlinePayment)

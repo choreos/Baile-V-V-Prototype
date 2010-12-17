@@ -4,6 +4,8 @@ import org.openk.core.OKC.impl.OKCFacadeImpl;
 import org.openk.core.module.interpreter.Argument;
 
 import br.ime.usp.restclient.RESTClient;
+import br.usp.ime.booktrip.utils.MessageTrace;
+import br.usp.ime.booktrip.utils.MessageTraceQueue;
 
 
 
@@ -15,6 +17,16 @@ public class AcquirerOKC extends OKCFacadeImpl
 	public AcquirerOKC(){
 		client = new RESTClient();
 		client.setBaseURL("http://localhost:9883/acquirer");
+	}
+
+	public boolean check(Argument Reserve, Argument Name, Argument CcNumber, Argument TotalPrice){
+		MessageTrace message = new MessageTrace("travelAgency", "acquire", "check", Reserve.getValue()  + "|" + Name.getValue() + "|" + CcNumber.getValue() + 
+																					 TotalPrice.getValue());
+
+		MessageTraceQueue queue = new MessageTraceQueue();
+		queue.add(message);
+		
+		return true;
 	}
 
 	public boolean countPayments(Argument Name, Argument CcNumber, Argument TotalPrice, Argument Status, Argument TravelAgencyPayment, Argument AirlinePayment){

@@ -6,6 +6,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import br.ime.usp.test.utils.Bash;
+import br.ime.usp.ws.traveler.Flight;
 import br.ime.usp.ws.traveler.TravelerWS;
 import br.ime.usp.ws.traveler.TravelerWSService;
 import br.usp.ime.booktrip.utils.MessageTraceQueue;
@@ -22,6 +23,7 @@ public class TravelAgencyIntegrationTest {
 	final static String NAME = "Saywer";
 	final static String DATE = "12-23-2010";
 	final static String CREDIT_CARD_NUMBER = "789653-2";
+	final static String TA_NAME = "United Airlines";
 	
 	@BeforeClass
 	public static void setUp(){
@@ -41,10 +43,24 @@ public class TravelAgencyIntegrationTest {
 	
 	@Test
 	public void shouldPassReserveInputDataToAirlineCorrectly(){
-		travelerStub.orderTrip(DESTINATION, DATE, NAME, CREDIT_CARD_NUMBER);
-		String actualContent = queue.get("travelAgency", "airline", "search");
+		Flight flight = travelerStub.orderTrip(DESTINATION, DATE, NAME, CREDIT_CARD_NUMBER);
+		travelerStub.reserveTicket(flight.getId());
+		String actualContent = queue.get("travelAgency", "airline", "reserve");
 		
-		assertEquals(DESTINATION + "|" + DATE, actualContent);
+		assertEquals(flight.getId() + "|" + TA_NAME, actualContent);
+	}
+	
+	@Test
+	public void shouldContactAcquireToCkeckCreditCard(){
+		Flight flight = travelerStub.orderTrip(DESTINATION, DATE, NAME, CREDIT_CARD_NUMBER);
+		String reserve = travelerStub.reserveTicket(flight.getId());
+		travelerStub.bookReserve(reserve);
+		
+		String actualContent = queue.get("travelAgency", "acquire", "check");
+		int totalPrice = Integer.parseInt(flight.getPrice()) + 100;
+		
+		assertEquals(reserve + "|" + NAME + "|" + CREDIT_CARD_NUMBER + "|"
+							 + totalPrice, actualContent);
 	}
 
 }
