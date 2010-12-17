@@ -47,11 +47,18 @@ public class AirlineOKC extends OKCFacadeImpl
 		}
 		return true;
 	}
+	
 
 	public boolean createReserve(Argument FlightID, Argument TravelAgencyID, Argument ReserveCost) throws RemoteException{
-				
+						
 		String flight = FlightID.getValue().toString();
 		String tAId = TravelAgencyID.getValue().toString();
+		
+		MessageTrace message = new MessageTrace("travelAgency", "airline", "reserve", 
+				flight + "|" + tAId);
+
+		MessageTraceQueue queue = new MessageTraceQueue();
+		queue.add(message);
 		
 		String response = stub.reserveTicket(flight, tAId);
 		
