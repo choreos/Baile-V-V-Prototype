@@ -6,6 +6,8 @@ import org.openk.core.OKC.impl.OKCFacadeImpl;
 import org.openk.core.module.interpreter.Argument;
 
 import br.ime.usp.restclient.RESTClient;
+import br.usp.ime.booktrip.utils.MessageTrace;
+import br.usp.ime.booktrip.utils.MessageTraceQueue;
 
 
 public class TravelAgencyOKC extends OKCFacadeImpl
@@ -22,6 +24,15 @@ public class TravelAgencyOKC extends OKCFacadeImpl
 		name = Name.getValue().toString();
 		String body = Name.getValue() + "|" + CcNumber.getValue();
 		client.POST("/users", body);	
+		return true;
+	}
+	
+	public boolean searchResult(Argument FlightStatus, Argument FlightID, Argument FlightPrice, Argument AirlineName){
+		String received = FlightStatus.getValue() + "|" + 
+						  FlightID.getValue() + "|" + 
+						  FlightPrice.getValue() + "|" +
+						  AirlineName.getValue();
+		addMessageTraceQueue("airline", "travelAgency", "response", received);
 		return true;
 	}
 
@@ -44,10 +55,12 @@ public class TravelAgencyOKC extends OKCFacadeImpl
 		
 		Reserve.setValue(id);
 		
+		addMessageTraceQueue("airline", "travelAgency", "response", ReserveCost.getValue());
+		
 		return true;
 	}
 
-	
+
 	public boolean catchUserData(Argument Reserve, Argument Name, Argument CcNumber, Argument TotalPrice)
 	{
 		
@@ -103,5 +116,12 @@ public class TravelAgencyOKC extends OKCFacadeImpl
 		return true;
 	}
 	
+	
+	private void addMessageTraceQueue(String emissor, String receptor, String name, Object content) {
+		MessageTrace message = new MessageTrace(emissor, receptor, name, content.toString());
+
+		MessageTraceQueue queue = new MessageTraceQueue();
+		queue.add(message);		
+	}
 	
 }
