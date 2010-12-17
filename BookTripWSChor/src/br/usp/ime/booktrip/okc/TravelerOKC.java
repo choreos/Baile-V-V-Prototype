@@ -133,7 +133,9 @@ public class TravelerOKC extends OKCFacadeImpl
 
 	public boolean eTicket(Argument Eticket) throws RemoteException
 	{
-		setResponse(Eticket.getValue().toString());
+		String content = Eticket.getValue().toString();
+		addMessageTraceQueue("airline", "traveler", "responseEticket", content);
+		setResponse(content);
 		return true;
 	}
 	
@@ -156,6 +158,13 @@ public class TravelerOKC extends OKCFacadeImpl
 	
 	public void setResponse(String content) throws RemoteException{		
 		stub.addOut(content);
+	}
+	
+	private void addMessageTraceQueue(String emissor, String receptor, String name, String content) {
+		MessageTrace message = new MessageTrace(emissor, receptor, name, content);
+
+		MessageTraceQueue queue = new MessageTraceQueue();
+		queue.add(message);		
 	}
 	
 }

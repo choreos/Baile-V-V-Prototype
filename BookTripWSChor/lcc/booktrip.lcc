@@ -45,7 +45,7 @@ a(travelAgency, ID2) ::
     then
       search(Destination, Date) => a(airline, ID3)
       then
-        response(FlightStatus, FlightID, FlightPrice, AirlineName) <= a(airline, ID3)
+        response(FlightStatus, FlightID, FlightPrice, AirlineName) <= a(airline, ID3) <- searchResult(FlightStatus, FlightID, FlightPrice, AirlineName)
 		then
 	  	  response(FlightStatus, FlightID, FlightPrice, AirlineName) => a(traveler, ID1)
 	 	  then
