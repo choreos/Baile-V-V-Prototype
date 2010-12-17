@@ -36,6 +36,10 @@ echo -n "Stopping currently running instances... "
 for a in `ps aux | grep "java -jar lib/chore-ws.jar" | grep -v grep | awk '{print $2}'`; do kill -9 $a; done
 echo "Done"
 
+echo -n "Building..."
+ant 
+echo "Done"
+
 echo -n "Lauching the web services... "
 java $ARGS_WSs &
 sleep 5
