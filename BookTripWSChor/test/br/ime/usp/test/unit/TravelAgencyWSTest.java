@@ -26,7 +26,7 @@ public class TravelAgencyWSTest {
 	}
 	
 	@AfterClass
-	public static void killTravelAgencyService() {
+	public static void unpublishTravelAgencyService() {
 		Bash.undeployService("travelagency");
 	}
 	
@@ -52,6 +52,7 @@ public class TravelAgencyWSTest {
 		
 		assertEquals("John Locke|421543-2", response);
 	}
+
 	
 	@Test
 	public void shouldRetrieveCCNumberByName() throws EmptyBaseURLException {

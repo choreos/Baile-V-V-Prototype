@@ -20,6 +20,7 @@ CP_DEMO="build/BookTrip.jar";
 CP="$CP_KERNEL:$CP_DEMO";
 
 ARGS_WSs="-jar lib/chore-ws.jar ChoreWS all";
+ARGS_QUEUE="-cp $CP br.usp.ime.booktrip.utils.MessageTraceQueue"
 ARGS_DS="-cp $CP org.openk.service.discovery.StartDiscoveryAndStorage $IP 6678 6678 7000 true 10";
 ARGS_PEER_PUBLISHER="-cp $CP br.usp.ime.booktrip.peer.PeerPublisher -discovery-bootstrap-host $IP -port-number 5007 -userID PeerPublisher@openk.org";
 ARGS_PEER_TRAVELER="-cp $CP br.usp.ime.booktrip.peer.Traveler -discovery-bootstrap-host $IP -port-number 5008 -userID Traveler@openk.org";
@@ -38,6 +39,11 @@ echo "Done"
 echo -n "Lauching the web services... "
 java $ARGS_WSs &
 sleep 5
+echo "Done"
+
+#Start queue
+echo -n "Starting message trace queue... "
+java $ARGS_QUEUE
 echo "Done"
 
 echo -n "Launching the Discovery Service... "

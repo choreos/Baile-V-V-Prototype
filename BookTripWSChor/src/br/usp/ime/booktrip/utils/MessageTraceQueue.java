@@ -54,8 +54,8 @@ public class MessageTraceQueue {
 
 	private void remove(String emissor, String receptor, String name) {
 		try {
-			this.stm = this.conn.createStatement();
-			this.stm.executeUpdate("DELETE FROM MessageTraceQueue WHERE "
+			stm = this.conn.createStatement();
+			stm.executeUpdate("DELETE FROM MessageTraceQueue WHERE "
 					+ "emissor=\"" + emissor + "\" and name=\"" + name + "\" and receptor=\"" + receptor + "\"");
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -67,7 +67,7 @@ public class MessageTraceQueue {
 		ResultSet rs;
 
 		try {
-			rs = this.stm
+			rs = stm
 					.executeQuery("SELECT * FROM MessageTraceQueue Where emissor=\""
 							+ emissor + "\" and name=\"" + name + "\" and receptor=\"" + receptor + "\"");
 			if (rs.next())
@@ -82,6 +82,11 @@ public class MessageTraceQueue {
 		}
 
 		return content;
+	}
+	
+	public static void main(String args[]){
+		MessageTraceQueue queue = new MessageTraceQueue();
+		queue.initDB();
 	}
 
 }

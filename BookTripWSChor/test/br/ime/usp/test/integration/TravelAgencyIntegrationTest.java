@@ -29,7 +29,6 @@ public class TravelAgencyIntegrationTest {
 		travelerService = new TravelerWSService();
 		travelerStub = travelerService.getTravelerWSPort();
 		queue = new MessageTraceQueue();
-		queue.initDB();
 	}
 	
 	@Test

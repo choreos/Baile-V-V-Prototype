@@ -1,12 +1,8 @@
 package br.ime.usp.test.integration;
 
-import static org.junit.Assert.*;
-
 import org.junit.BeforeClass;
-import org.junit.Test;
 
 import br.ime.usp.test.utils.Bash;
-import br.ime.usp.ws.traveler.Flight;
 import br.ime.usp.ws.traveler.TravelerWS;
 import br.ime.usp.ws.traveler.TravelerWSService;
 import br.usp.ime.booktrip.utils.MessageTraceQueue;
@@ -30,20 +26,6 @@ public class AirlinentegrationTest {
 		travelerService = new TravelerWSService();
 		travelerStub = travelerService.getTravelerWSPort();
 		queue = new MessageTraceQueue();
-		queue.initDB();
-	}
-	
-	@Test
-	public void shouldPassTheCorrectValueToTravelAgency(){
-		Flight flight = travelerStub.orderTrip(DESTINATION, DATE, NAME, CREDIT_CARD_NUMBER);
-		String reserve = travelerStub.reserveTicket(flight.getId());
-		
-		travelerStub.bookReserve(reserve);
-		String expected = queue.get("airline", "travelagency", "value_paid");
-		
-		assertEquals("R$ 2000", expected);
-	
-	
 	}
 	
 

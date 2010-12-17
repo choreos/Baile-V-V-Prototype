@@ -19,6 +19,7 @@ public class AirlineWSTest {
 	
 	private AirlineWSService service;
 	private AirlineWS stub;
+
 	final String TA_NAME = "United Airlines";
 	final String FLIGHT_ID = "3153";
 	final String RESERVE = "R3153-1|2000";
@@ -30,7 +31,7 @@ public class AirlineWSTest {
 	}
 	
 	@AfterClass
-	public static void killAirlineService() {
+	public static void unpublishAirlineService() {
 		Bash.undeployService("airline");
 	}
 	
@@ -57,6 +58,7 @@ public class AirlineWSTest {
 	public void shouldBeAnAuthorizedTravelAgency() throws RemoteException{
 		assertTrue(stub.isTravelAgencyAuthorized(TA_NAME));
 	}
+	
 	
 	@Test
 	public void shouldReturnAReserve() throws RemoteException{	

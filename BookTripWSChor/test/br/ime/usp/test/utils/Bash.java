@@ -114,7 +114,29 @@ public class Bash {
 		}
 
 	}
+	
+	public static void cleanMessageTraceQueueDatabase() {
+		Connection conn;
+		Statement stm;
+		if (new File("messageTraceQueue.db").exists()) {
 
+			try {
+				Class.forName("org.sqlite.JDBC");
+				conn = DriverManager
+						.getConnection("jdbc:sqlite:travelagency.db");
+				stm = conn.createStatement();
+
+				stm.executeUpdate("Delete from MessageTraceQueue");
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+	
 	public static void cleanAllDataBases() {
 		cleanAcquirerDatabase();
 		cleanTravelAgencyDatabase();
