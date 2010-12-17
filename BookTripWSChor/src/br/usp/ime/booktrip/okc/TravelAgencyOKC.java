@@ -72,7 +72,7 @@ public class TravelAgencyOKC extends OKCFacadeImpl
 	public boolean emitStatement(Argument Reserve, Argument Name, Argument AirlinePayment, Argument Statement){
 		String resource = name.replace(" ", "%20");
 		String ccNumber = client.GET("/users?name="+resource);
-		double value = Double.parseDouble(AirlinePayment.getValue().toString());
+		int value = Integer.parseInt(AirlinePayment.getValue().toString());
 		
 		value  = value + 100;
 		

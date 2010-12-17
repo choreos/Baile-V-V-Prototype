@@ -123,7 +123,7 @@ public class Bash {
 			try {
 				Class.forName("org.sqlite.JDBC");
 				conn = DriverManager
-						.getConnection("jdbc:sqlite:travelagency.db");
+						.getConnection("jdbc:sqlite:messageTraceQueue.db");
 				stm = conn.createStatement();
 
 				stm.executeUpdate("Delete from MessageTraceQueue");

@@ -31,6 +31,26 @@ public class BookPlanTripTest {
 		Bash.cleanAllDataBases();
 	}
 	
+
+	@Test
+	public void shouldBookAndPlanTrip() throws RemoteException{
+		
+		Flight flight = stub.orderTrip("Paris", "12-20-2010", "John Locke", "435067869");
+		String reserve = stub.reserveTicket(flight.getId());
+		List<String> response = stub.bookReserve(reserve);
+		
+		String statement = "Name: John Locke" + "\n" +
+		   "Credit card: 435067869" + "\n" +
+		   "Value discounted: $2100";
+		
+		String eTicket =   "e-ticket for flight "+ flight.getId() + "\n" + 
+		   "passenger: John Locke";
+		
+		assertTrue(response.contains(eTicket));
+		assertTrue(response.contains(statement));
+
+	}
+	
 	@Test
 	public void shouldNotApprovedCreditCard() throws RemoteException{		
 		Flight flight = stub.orderTrip("Paris", "12-20-2010", "John Locke", "XXXXXX");
@@ -45,23 +65,6 @@ public class BookPlanTripTest {
 	}
 	
 	
-	@Test
-	public void shouldBookAndPlanTrip() throws RemoteException{
-		
-		Flight flight = stub.orderTrip("Paris", "12-20-2010", "John Locke", "435067869");
-		String reserve = stub.reserveTicket(flight.getId());
-		List<String> response = stub.bookReserve(reserve);
-		
-		String statement = "Name: John Locke" + "\n" +
-		   "Credit card: 435067869" + "\n" +
-		   "Value discounted: $2100.0";
-		
-		String eTicket =   "e-ticket for flight "+ flight.getId() + "\n" + 
-		   "passenger: John Locke";
-		
-		assertEquals(eTicket, response.get(0));
-		assertEquals(statement, response.get(1));		
-	}
 	
 	
 	@Test

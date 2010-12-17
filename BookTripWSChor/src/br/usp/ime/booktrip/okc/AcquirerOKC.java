@@ -1,4 +1,4 @@
-	package br.usp.ime.booktrip.okc;
+package br.usp.ime.booktrip.okc;
 
 import org.openk.core.OKC.impl.OKCFacadeImpl;
 import org.openk.core.module.interpreter.Argument;
@@ -7,61 +7,58 @@ import br.ime.usp.restclient.RESTClient;
 import br.usp.ime.booktrip.utils.MessageTrace;
 import br.usp.ime.booktrip.utils.MessageTraceQueue;
 
-
-
-public class AcquirerOKC extends OKCFacadeImpl
-{
+public class AcquirerOKC extends OKCFacadeImpl {
 	RESTClient client;
 	String name;
-	
-	public AcquirerOKC(){
+
+	public AcquirerOKC() {
 		client = new RESTClient();
 		client.setBaseURL("http://localhost:9883/acquirer");
 	}
 
-	public boolean check(Argument Reserve, Argument Name, Argument CcNumber, Argument TotalPrice){
-		MessageTrace message = new MessageTrace("travelAgency", "acquire", "check", Reserve.getValue()  + "|" + Name.getValue() + "|" + CcNumber.getValue() + 
-																					 TotalPrice.getValue());
+
+	public boolean countPayments(Argument Reserve, Argument Name, Argument CcNumber,
+			Argument TotalPrice, Argument Status, Argument TravelAgencyPayment,
+			Argument AirlinePayment) {
+		
+		MessageTrace message = new MessageTrace("travelAgency", "acquire",
+				"check", Reserve.getValue() + "|" + Name.getValue() + "|"
+						+ CcNumber.getValue() + "|" + TotalPrice.getValue());
 
 		MessageTraceQueue queue = new MessageTraceQueue();
 		queue.add(message);
-		
-		return true;
-	}
 
-	public boolean countPayments(Argument Name, Argument CcNumber, Argument TotalPrice, Argument Status, Argument TravelAgencyPayment, Argument AirlinePayment){
-		String body = CcNumber.getValue().toString() + "|" + Name.getValue().toString() + "|" + 10000;
+		String body = CcNumber.getValue().toString() + "|"
+				+ Name.getValue().toString() + "|" + 10000;
 		body = body.replace(" ", "%20");
 		client.PUT("/account", body);
-		
-		String status = client.GET("/check?number="+ CcNumber.getValue().toString());
+
+		String status = client.GET("/check?number="
+				+ CcNumber.getValue().toString());
 		Status.setValue(status);
 
-		if(status.equals("Credit card not approved"))
+		if (status.equals("Credit card not approved"))
 			return false;
 
-		body = CcNumber.getValue().toString() + "|" + TotalPrice.getValue().toString();
-
+		body = CcNumber.getValue().toString() + "|"
+				+ TotalPrice.getValue().toString();
 
 		client.PUT("/discount", body);
-		
-		double totalPrice = Integer.parseInt(TotalPrice.getValue().toString());
 
-		double travelAgencyPayment = 100;
-		double airlinePayment = totalPrice - travelAgencyPayment;
+		int totalPrice = Integer.parseInt(TotalPrice.getValue().toString());
+
+		int travelAgencyPayment = 100;
+		int airlinePayment = totalPrice - travelAgencyPayment;
 		TravelAgencyPayment.setValue(travelAgencyPayment);
 		AirlinePayment.setValue(airlinePayment);
-		
+
 		return true;
 	}
-	
-	
-	public boolean verifyStatus(Argument Status){
 
-		if(Status.getValue() != null)
-				return true;
+	public boolean verifyStatus(Argument Status) {
+		if (Status.getValue() != null)
+			return true;
 		return false;
 	}
-		
-	}
-	
+
+}

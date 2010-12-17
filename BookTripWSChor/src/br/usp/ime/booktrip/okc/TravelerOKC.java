@@ -6,9 +6,12 @@ import java.util.StringTokenizer;
 
 import org.openk.core.OKC.impl.OKCFacadeImpl;
 import org.openk.core.module.interpreter.Argument;
+
 import br.ime.usp.ws.traveler.Request;
 import br.ime.usp.ws.traveler.TravelerWS;
 import br.ime.usp.ws.traveler.TravelerWSService;
+import br.usp.ime.booktrip.utils.MessageTrace;
+import br.usp.ime.booktrip.utils.MessageTraceQueue;
 
 
 
@@ -117,6 +120,13 @@ public class TravelerOKC extends OKCFacadeImpl
 
 	public boolean statement(Argument Statement) throws RemoteException
 	{
+
+		MessageTrace message = new MessageTrace("travelAgency", "traveler",
+				"statement", Statement.getValue().toString());
+
+		MessageTraceQueue queue = new MessageTraceQueue();
+		queue.add(message);
+		
 		setResponse(Statement.getValue().toString());
 		return true;
 	}

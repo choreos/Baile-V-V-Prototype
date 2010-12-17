@@ -51,16 +51,25 @@ public class TravelAgencyIntegrationTest {
 	}
 	
 	@Test
-	public void shouldContactAcquireToCkeckCreditCard(){
+	public void shouldContactAcquireAndTravelerWhenBookIsSuccess(){
 		Flight flight = travelerStub.orderTrip(DESTINATION, DATE, NAME, CREDIT_CARD_NUMBER);
 		String reserve = travelerStub.reserveTicket(flight.getId());
 		travelerStub.bookReserve(reserve);
 		
+		
+		//Checking message sent to Acquire
 		String actualContent = queue.get("travelAgency", "acquire", "check");
 		int totalPrice = Integer.parseInt(flight.getPrice()) + 100;
-		
 		assertEquals(reserve + "|" + NAME + "|" + CREDIT_CARD_NUMBER + "|"
 							 + totalPrice, actualContent);
+		
+		
+		//Checking message sent to Traveler
+		String expectedContent = "Name: " + NAME + "\n" +
+		   "Credit card: " + CREDIT_CARD_NUMBER + "\n" +
+		   "Value discounted: $" + totalPrice;
+		actualContent = queue.get("travelAgency", "traveler", "statement");
+		assertEquals(expectedContent, actualContent);
 	}
 
 }

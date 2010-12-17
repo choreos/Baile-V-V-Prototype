@@ -24,9 +24,9 @@ a(traveler, ID1) ::
      (      
 	  bookTicket(Reserve) => a(travelAgency, ID2) <- userMakesABook(Reserve)
       then
-  	    response(Statement) <= a(travelAgency, ID2) <- statement(Statement)
+  	    responseTA(Statement) <= a(travelAgency, ID2) <- statement(Statement)
         then
-	      response(Eticket) <= a(airline, ID3) <- eTicket(Eticket)
+	      responseAL(Eticket) <= a(airline, ID3) <- eTicket(Eticket)
 	      then
             a(traveler, ID1)
 	 )
@@ -89,7 +89,7 @@ a(travelAgency, ID2) ::
       	then
       	  confirmation(Reserve, Name, AirlinePayment) <= a(airline, ID3) <- emitStatement(Reserve, Name, AirlinePayment, Statement)
 		    then
-            response(Statement) => a(traveler, ID1)
+            responseTA(Statement) => a(traveler, ID1)
             then
               a(travelAgency, ID2)
     )
@@ -97,7 +97,7 @@ a(travelAgency, ID2) ::
     (
     notificationTA(Status) <= a(acquirer, ID4)  <- emitNotificationTA(Status, Statement)
     then
-      response(Statement) => a(traveler, ID1)
+      responseTA(Statement) => a(traveler, ID1)
             then
               a(travelAgency, ID2)
     )
@@ -124,7 +124,7 @@ a(airline, ID3) ::
     then
      confirmation(Reserve, Name, AirlinePayment) => a(travelAgency, ID2) <- createEticket(Reserve, Name, CcNumber, Eticket)
       then
-        response(Eticket) => a(traveler, ID1)
+        responseAL(Eticket) => a(traveler, ID1)
         then
           a(airline, ID3) 
     )
@@ -132,7 +132,7 @@ a(airline, ID3) ::
     (
      notificationAL(Status) <= a(acquirer, ID4) <- emitNotificationAL(Status, Eticket)
      then
-       response(Eticket) => a(traveler, ID1)
+       responseAL(Eticket) => a(traveler, ID1)
             then
               a(airline, ID3)
     )
@@ -147,10 +147,10 @@ a(airline, ID3) ::
      
 a(acquirer, ID4) ::
 	(
-     check(Reserve, Name, CcNumber, TotalPrice) <= a(travelAgency, ID2) <- check (Reserve, Name, CcNumber, TotalPrice)
+     check(Reserve, Name, CcNumber, TotalPrice) <= a(travelAgency, ID2) 
 	     then
 	     (
-	     approval(Status, TravelAgencyPayment) => a(travelAgency, ID2) <- countPayments(Name, CcNumber, TotalPrice, Status, TravelAgencyPayment, AirlinePayment)
+	     approval(Status, TravelAgencyPayment) => a(travelAgency, ID2) <- countPayments(Reserve, Name, CcNumber, TotalPrice, Status, TravelAgencyPayment, AirlinePayment)
 	     then
 	       payment(AirlinePayment, Reserve, Name, CcNumber) => a(airline, ID3)
 	   	   then

@@ -1,5 +1,6 @@
 package br.ime.usp.test.acceptance;
 
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
 import java.rmi.RemoteException;
@@ -55,9 +56,9 @@ public class BookPlanTripFlowTest {
 		
 		String statement = "Name: John Locke" + "\n" +
 		   "Credit card: 435067869" + "\n" +
-		   "Value discounted: $2100.0";
+		   "Value discounted: $2100";
 			
-		assertEquals(statement, bookResponse.get(1));
+		assertTrue(bookResponse.contains(statement));
 		
 	}
 	
@@ -73,7 +74,7 @@ public class BookPlanTripFlowTest {
 		
 		   "passenger: John Locke";
 			
-		assertEquals(eTicket, bookResponse.get(0));
+		assertTrue(bookResponse.contains(eTicket));
 		
 	}
 	
