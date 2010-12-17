@@ -85,7 +85,7 @@ a(travelAgency, ID2) ::
     )
     or
     (
-     approval(Status, TravelAgencyPayment) <= a(acquirer, ID4) <-registerPayment(TravelAgencyPayment)
+     approval(Status, TravelAgencyPayment) <= a(acquirer, ID4) <-registerPayment(Status, TravelAgencyPayment)
       	then
       	  confirmation(Reserve, Name, AirlinePayment) <= a(airline, ID3) <- emitStatement(Reserve, Name, AirlinePayment, Statement)
 		    then
@@ -122,7 +122,7 @@ a(airline, ID3) ::
     (
     payment(AirlinePayment, Reserve, Name, CcNumber) <= a(acquirer, ID4) 
     then
-     confirmation(Reserve, Name, AirlinePayment) => a(travelAgency, ID2) <- createEticket(Reserve, Name, CcNumber, Eticket)
+     confirmation(Reserve, Name, AirlinePayment) => a(travelAgency, ID2) <- createEticket(AirlinePayment, Reserve, Name, CcNumber, Eticket)
       then
         responseAL(Eticket) => a(traveler, ID1)
         then

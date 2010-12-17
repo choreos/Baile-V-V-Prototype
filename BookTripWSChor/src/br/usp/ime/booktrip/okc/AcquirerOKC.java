@@ -21,12 +21,12 @@ public class AcquirerOKC extends OKCFacadeImpl {
 			Argument TotalPrice, Argument Status, Argument TravelAgencyPayment,
 			Argument AirlinePayment) {
 		
-		MessageTrace message = new MessageTrace("travelAgency", "acquire",
-				"check", Reserve.getValue() + "|" + Name.getValue() + "|"
-						+ CcNumber.getValue() + "|" + TotalPrice.getValue());
-
-		MessageTraceQueue queue = new MessageTraceQueue();
-		queue.add(message);
+		String content = Reserve.getValue() + "|" + Name.getValue() + "|"
+		+ CcNumber.getValue() + "|" + TotalPrice.getValue();
+		
+		addMessageTraceQueue("travelAgency", "acquire",
+				"check", content);
+	
 
 		String body = CcNumber.getValue().toString() + "|"
 				+ Name.getValue().toString() + "|" + 10000;
@@ -59,6 +59,13 @@ public class AcquirerOKC extends OKCFacadeImpl {
 		if (Status.getValue() != null)
 			return true;
 		return false;
+	}
+	
+	private void addMessageTraceQueue(String emissor, String receptor, String name, Object content) {
+		MessageTrace message = new MessageTrace(emissor, receptor, name, content.toString());
+
+		MessageTraceQueue queue = new MessageTraceQueue();
+		queue.add(message);		
 	}
 
 }

@@ -14,10 +14,12 @@ public class TravelAgencyOKC extends OKCFacadeImpl
 {
 	RESTClient client;
 	String name;
-	
+	MessageTraceQueue queue;
+
 	public TravelAgencyOKC(){
 		client = new RESTClient();
 		client.setBaseURL("http://localhost:9881/travelagency");
+		queue = new MessageTraceQueue();
 	}
 
 	public boolean registerUser(Argument Name, Argument CcNumber){
@@ -98,9 +100,17 @@ public class TravelAgencyOKC extends OKCFacadeImpl
 	
 	
 	public boolean emitNotification(Argument Status, Argument Statement){
+
 		String notification = Status.getValue().toString();
 		Statement.setValue(notification);
-
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		addMessageTraceQueue("acquire", "travelAgency", "notificationTA", notification);
+		
 		return true;
 	}
 	
@@ -112,7 +122,12 @@ public class TravelAgencyOKC extends OKCFacadeImpl
 		return true;
 	}
 	
-	public boolean registerPayment(Argument TravelAgencyPayment){
+	public boolean registerPayment(Argument Status, Argument TravelAgencyPayment){
+		String payment = Status.getValue() + "|" + TravelAgencyPayment.getValue();
+
+		addMessageTraceQueue("acquire", "travelAgency",
+				"approval", payment);
+	
 		return true;
 	}
 	
@@ -120,7 +135,6 @@ public class TravelAgencyOKC extends OKCFacadeImpl
 	private void addMessageTraceQueue(String emissor, String receptor, String name, Object content) {
 		MessageTrace message = new MessageTrace(emissor, receptor, name, content.toString());
 
-		MessageTraceQueue queue = new MessageTraceQueue();
 		queue.add(message);		
 	}
 	

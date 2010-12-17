@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JOptionPane;
+
 public class MessageTraceQueue {
 	private Connection conn;
 	private  static Statement stm;
@@ -38,6 +40,7 @@ public class MessageTraceQueue {
 
 	public void add(MessageTrace messageTrace) {
 		try {
+
 			stm = conn.createStatement();
 			stm.executeUpdate("INSERT INTO MessageTraceQueue  (emissor, receptor, name, content) VALUES (\""
 					+ messageTrace.getEmissor()

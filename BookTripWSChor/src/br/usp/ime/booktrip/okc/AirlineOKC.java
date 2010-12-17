@@ -22,11 +22,8 @@ public class AirlineOKC extends OKCFacadeImpl
 	{		
 		service = new AirlineWSService();
 		stub = service.getAirlineWSPort();
-		
-		MessageTrace message = new MessageTrace("travelAgency", "airline", "search", Destination.getValue() + "|" + Date.getValue());
-
-		MessageTraceQueue queue = new MessageTraceQueue();
-		queue.add(message);
+				
+		addMessageTraceQueue("travelAgency", "airline", "search", Destination.getValue() + "|" + Date.getValue());
 		
 		String destination = Destination.getValue().toString();
 		String date = Date.getValue().toString();
@@ -54,12 +51,9 @@ public class AirlineOKC extends OKCFacadeImpl
 		String flight = FlightID.getValue().toString();
 		String tAId = TravelAgencyID.getValue().toString();
 		
-		MessageTrace message = new MessageTrace("travelAgency", "airline", "reserve", 
+		addMessageTraceQueue("travelAgency", "airline", "reserve", 
 				flight + "|" + tAId);
 
-		MessageTraceQueue queue = new MessageTraceQueue();
-		queue.add(message);
-		
 		String response = stub.reserveTicket(flight, tAId);
 		
 		ReserveCost.setValue(response);
@@ -75,8 +69,10 @@ public class AirlineOKC extends OKCFacadeImpl
 		return true;
 	}
 
-	public boolean createEticket(Argument Reserve,Argument Name,Argument CcNumber, Argument Eticket) throws RemoteException{
-
+	public boolean createEticket(Argument AirlinePayment, Argument Reserve,Argument Name,Argument CcNumber, Argument Eticket) throws RemoteException{
+		String payment = AirlinePayment.getValue() + "|" + Reserve.getValue() + "|" + Name.getValue() + "|" + CcNumber.getValue();
+		addMessageTraceQueue("acquire", "airline", "payment", payment);
+		
 		String reserveId = Reserve.getValue().toString();
 		String userName = Name.getValue().toString();
 
@@ -88,9 +84,17 @@ public class AirlineOKC extends OKCFacadeImpl
 	}
 	
 	public boolean emitNotification(Argument Status, Argument Eticket){
+		addMessageTraceQueue("acquire", "airline", "NotificationAL", Status.getValue().toString());
 		Eticket.setValue("Purchased cancelled");
 
 		return true;
+	}
+	
+	private void addMessageTraceQueue(String emissor, String receptor, String name, Object content) {
+		MessageTrace message = new MessageTrace(emissor, receptor, name, content.toString());
+
+		MessageTraceQueue queue = new MessageTraceQueue();
+		queue.add(message);		
 	}
 
 }
