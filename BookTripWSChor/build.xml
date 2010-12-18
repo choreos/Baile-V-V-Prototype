@@ -6,6 +6,15 @@
 	<property name="build"  value="./build" />
 	<property name="jarname" value="${build}/BookTrip.jar" />
 	<property name="OK-kernel" value="${libdir}/ok.jar" />
+	<property name="test.suite.name" value="br.usp.ime.test" />
+
+	<path id="test.classpath">
+  		<pathelement location="${bindir}" />
+  		<pathelement location="${libdir}/junit.jar" />
+  		<fileset dir="${libdir}">
+    			<include name="**/*.jar"/>
+		</fileset>
+	</path>
 
 	<target name="compile" description="Compile all java classes" >
 		<mkdir dir="${bindir}" />
@@ -22,6 +31,38 @@
 		<mkdir dir="${build}" />
 		<jar destfile="${jarname}" basedir="${bindir}" />
 	</target>
+
+	<target name="runUnitTests">
+  		<junit fork="yes" haltonfailure="yes">
+    			<test name="${test.suite.name}.UnitTestSuite" />
+    			<formatter type="plain" usefile="false" />
+    			<classpath refid="test.classpath" />
+  		</junit>
+	</target>
+
+        <target name="runIntegrationTests">
+                <junit fork="yes" haltonfailure="yes">
+                        <test name="${test.suite.name}.IntegrationTestSuite" />
+                        <formatter type="plain" usefile="false" />
+                        <classpath refid="test.classpath" />
+                </junit>
+        </target>
+
+        <target name="runAcceptanceTests">
+                <junit fork="yes" haltonfailure="yes">
+                        <test name="${test.suite.name}.AcceptanceTestSuite" />
+                        <formatter type="plain" usefile="false" />
+                        <classpath refid="test.classpath" />
+                </junit>
+        </target>
+
+	   <target name="runAllTests">
+                <junit fork="yes" haltonfailure="yes">
+                        <test name="${test.suite.name}.AllTestSuites" />
+                        <formatter type="plain" usefile="false" />
+                        <classpath refid="test.classpath" />
+                </junit>
+        </target>
 
 	<target name="clean" description="Remove all compilation products to ensure a clean build">
 		<delete dir="${bindir}" />

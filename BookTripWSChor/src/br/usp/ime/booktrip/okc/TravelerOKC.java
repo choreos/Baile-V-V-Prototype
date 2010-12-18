@@ -4,16 +4,14 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
-import javax.swing.JOptionPane;
-
 import org.openk.core.OKC.impl.OKCFacadeImpl;
 import org.openk.core.module.interpreter.Argument;
 
-import br.ime.usp.ws.traveler.Request;
-import br.ime.usp.ws.traveler.TravelerWS;
-import br.ime.usp.ws.traveler.TravelerWSService;
 import br.usp.ime.booktrip.utils.MessageTrace;
 import br.usp.ime.booktrip.utils.MessageTraceQueue;
+import br.usp.ime.ws.traveler.Request;
+import br.usp.ime.ws.traveler.TravelerWS;
+import br.usp.ime.ws.traveler.TravelerWSService;
 
 public class TravelerOKC extends OKCFacadeImpl {
 	TravelerWSService service;

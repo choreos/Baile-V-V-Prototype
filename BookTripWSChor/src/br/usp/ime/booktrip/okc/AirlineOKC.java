@@ -5,11 +5,11 @@ import java.rmi.RemoteException;
 import org.openk.core.OKC.impl.OKCFacadeImpl;
 import org.openk.core.module.interpreter.Argument;
 
-import br.ime.usp.ws.airline.AirlineWS;
-import br.ime.usp.ws.airline.AirlineWSService;
-import br.ime.usp.ws.airline.FlightResult;
 import br.usp.ime.booktrip.utils.MessageTrace;
 import br.usp.ime.booktrip.utils.MessageTraceQueue;
+import br.usp.ime.ws.airline.AirlineWS;
+import br.usp.ime.ws.airline.AirlineWSService;
+import br.usp.ime.ws.airline.FlightResult;
 
 
 
