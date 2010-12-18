@@ -2,6 +2,7 @@
 
 	<property name="bindir" value="./bin" />
 	<property name="srcdir" value="./src" />
+	<property name="test_bin_dir" value="${bindir}" />
 	<property name="libdir" value="./lib" />
 	<property name="build"  value="./build" />
 	<property name="jarname" value="${build}/BookTrip.jar" />
@@ -9,12 +10,24 @@
 	<property name="test.suite.name" value="br.usp.ime.test" />
 
 	<path id="test.classpath">
-  		<pathelement location="${bindir}" />
+  		<pathelement location="${test_bin_dir}" />
   		<pathelement location="${libdir}/junit.jar" />
-  		<fileset dir="${libdir}">
-    			<include name="**/*.jar"/>
+		<pathelement location="${libdir}/hamcrest-core-1.1.jar" />
+		<pathelement location="${libdir}/traveler-client.jar" />
+		<pathelement location="${libdir}/airline-client.jar" />
+		<pathelement location="${libdir}/brestclient.jar" />
+		<pathelement location="${libdir}/queue.jar" />
+		<fileset dir="${libdir}/chore-ws_lib">
+    			 <include name="*.jar"/>
+		</fileset>
+		<fileset dir="${libdir}/restclient_lib">
+    			 <include name="*.jar"/>
+		</fileset>
+		<fileset dir="${libdir}/smatch">
+    			 <include name="*.jar"/>
 		</fileset>
 	</path>
+
 
 	<target name="compile" description="Compile all java classes" >
 		<mkdir dir="${bindir}" />
@@ -33,7 +46,7 @@
 	</target>
 
 	<target name="runUnitTests">
-  		<junit fork="yes" haltonfailure="yes">
+  		<junit printsummary="yes" fork="yes" haltonfailure="yes">
     			<test name="${test.suite.name}.UnitTestSuite" />
     			<formatter type="plain" usefile="false" />
     			<classpath refid="test.classpath" />
@@ -41,7 +54,7 @@
 	</target>
 
         <target name="runIntegrationTests">
-                <junit fork="yes" haltonfailure="yes">
+                <junit printsummary="yes" fork="yes" haltonfailure="yes">
                         <test name="${test.suite.name}.IntegrationTestSuite" />
                         <formatter type="plain" usefile="false" />
                         <classpath refid="test.classpath" />
@@ -49,7 +62,7 @@
         </target>
 
         <target name="runAcceptanceTests">
-                <junit fork="yes" haltonfailure="yes">
+                <junit printsummary="yes" fork="yes" haltonfailure="yes">
                         <test name="${test.suite.name}.AcceptanceTestSuite" />
                         <formatter type="plain" usefile="false" />
                         <classpath refid="test.classpath" />
@@ -57,7 +70,7 @@
         </target>
 
 	   <target name="runAllTests">
-                <junit fork="yes" haltonfailure="yes">
+                <junit printsummary="yes" fork="yes" haltonfailure="yes">
                         <test name="${test.suite.name}.AllTestSuites" />
                         <formatter type="plain" usefile="false" />
                         <classpath refid="test.classpath" />

@@ -1,11 +1,48 @@
-[H[2JDetermining local host's IP... 192.168.1.100
-Stopping currently running instances... Done
-Lauching the web services... Starting grizzly...
-Starting grizzly...
-Done
-Launching the Discovery Service... Done
-Publishing the Interaction Model... Done
-Launching the traveler... Done
-Launching the travel agency... Done
-Launching the airLine... Done
-Launching the acquirer... Done
+Buildfile: build.xml
+
+runIntegrationTests:
+    [junit] Running br.usp.ime.test.IntegrationTestSuite
+    [junit] Testsuite: br.usp.ime.test.IntegrationTestSuite
+    [junit] Tests run: 0, Failures: 0, Errors: 1, Time elapsed: 1.393 sec
+    [junit] Tests run: 0, Failures: 0, Errors: 1, Time elapsed: 1.393 sec
+    [junit] ------------- Standard Error -----------------
+    [junit] Dec 18, 2010 5:39:17 PM com.sun.xml.internal.ws.model.RuntimeModeler getRequestWrapperClass
+    [junit] INFO: Dynamically creating request wrapper Class br.usp.ime.ws.traveler.jaxws.OrderTrip
+    [junit] Dec 18, 2010 5:39:17 PM com.sun.xml.internal.ws.model.RuntimeModeler getResponseWrapperClass
+    [junit] INFO: Dynamically creating response wrapper bean Class br.usp.ime.ws.traveler.jaxws.OrderTripResponse
+    [junit] Dec 18, 2010 5:39:17 PM com.sun.xml.internal.ws.model.RuntimeModeler getRequestWrapperClass
+    [junit] INFO: Dynamically creating request wrapper Class br.usp.ime.ws.traveler.jaxws.ReserveTicket
+    [junit] Dec 18, 2010 5:39:17 PM com.sun.xml.internal.ws.model.RuntimeModeler getResponseWrapperClass
+    [junit] INFO: Dynamically creating response wrapper bean Class br.usp.ime.ws.traveler.jaxws.ReserveTicketResponse
+    [junit] Dec 18, 2010 5:39:17 PM com.sun.xml.internal.ws.model.RuntimeModeler getRequestWrapperClass
+    [junit] INFO: Dynamically creating request wrapper Class br.usp.ime.ws.traveler.jaxws.BookReserve
+    [junit] Dec 18, 2010 5:39:17 PM com.sun.xml.internal.ws.model.RuntimeModeler getResponseWrapperClass
+    [junit] INFO: Dynamically creating response wrapper bean Class br.usp.ime.ws.traveler.jaxws.BookReserveResponse
+    [junit] Dec 18, 2010 5:39:17 PM com.sun.xml.internal.ws.model.RuntimeModeler getRequestWrapperClass
+    [junit] INFO: Dynamically creating request wrapper Class br.usp.ime.ws.traveler.jaxws.CancelReserve
+    [junit] Dec 18, 2010 5:39:17 PM com.sun.xml.internal.ws.model.RuntimeModeler getResponseWrapperClass
+    [junit] INFO: Dynamically creating response wrapper bean Class br.usp.ime.ws.traveler.jaxws.CancelReserveResponse
+    [junit] Dec 18, 2010 5:39:17 PM com.sun.xml.internal.ws.model.RuntimeModeler getRequestWrapperClass
+    [junit] INFO: Dynamically creating request wrapper Class br.usp.ime.ws.traveler.jaxws.GetInData
+    [junit] Dec 18, 2010 5:39:17 PM com.sun.xml.internal.ws.model.RuntimeModeler getResponseWrapperClass
+    [junit] INFO: Dynamically creating response wrapper bean Class br.usp.ime.ws.traveler.jaxws.GetInDataResponse
+    [junit] Dec 18, 2010 5:39:17 PM com.sun.xml.internal.ws.model.RuntimeModeler getRequestWrapperClass
+    [junit] INFO: Dynamically creating request wrapper Class br.usp.ime.ws.traveler.jaxws.AddOut
+    [junit] Dec 18, 2010 5:39:17 PM com.sun.xml.internal.ws.model.RuntimeModeler getResponseWrapperClass
+    [junit] INFO: Dynamically creating response wrapper bean Class br.usp.ime.ws.traveler.jaxws.AddOutResponse
+    [junit] ------------- ---------------- ---------------
+    [junit] 
+    [junit] Testcase: br.usp.ime.test.integration.TravelAgencyIntegrationTest took 0 sec
+    [junit] 	Caused an ERROR
+    [junit] br.usp.ime.ws.traveler.TravelerWS is not an interface
+    [junit] java.lang.IllegalArgumentException: br.usp.ime.ws.traveler.TravelerWS is not an interface
+    [junit] 	at java.lang.reflect.Proxy.getProxyClass(Proxy.java:362)
+    [junit] 	at java.lang.reflect.Proxy.newProxyInstance(Proxy.java:581)
+    [junit] 	at com.sun.xml.internal.ws.client.WSServiceDelegate.createEndpointIFBaseProxy(WSServiceDelegate.java:630)
+    [junit] 	at com.sun.xml.internal.ws.client.WSServiceDelegate.getPort(WSServiceDelegate.java:331)
+    [junit] 	at com.sun.xml.internal.ws.client.WSServiceDelegate.getPort(WSServiceDelegate.java:313)
+    [junit] 	at com.sun.xml.internal.ws.client.WSServiceDelegate.getPort(WSServiceDelegate.java:295)
+    [junit] 	at javax.xml.ws.Service.getPort(Service.java:92)
+    [junit] 	at br.usp.ime.ws.traveler.TravelerWSService.getTravelerWSPort(TravelerWSService.java:56)
+    [junit] 	at br.usp.ime.test.integration.TravelAgencyIntegrationTest.setUp(TravelAgencyIntegrationTest.java:32)
+    [junit] 
