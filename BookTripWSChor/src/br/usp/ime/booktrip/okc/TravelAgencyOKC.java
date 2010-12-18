@@ -99,16 +99,11 @@ public class TravelAgencyOKC extends OKCFacadeImpl
 	}
 	
 	
-	public boolean emitNotification(Argument Status, Argument Statement){
+	public boolean emitNotificationTA(Argument Status, Argument Statement){
 
 		String notification = Status.getValue().toString();
 		Statement.setValue(notification);
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	
 		addMessageTraceQueue("acquire", "travelAgency", "notificationTA", notification);
 		
 		return true;

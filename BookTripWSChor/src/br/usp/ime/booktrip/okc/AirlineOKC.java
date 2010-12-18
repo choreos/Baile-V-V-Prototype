@@ -17,6 +17,11 @@ public class AirlineOKC extends OKCFacadeImpl
 {
 	private AirlineWSService service;
 	private AirlineWS stub;
+	MessageTraceQueue queue;
+	
+	public AirlineOKC(){
+		queue = new MessageTraceQueue();
+	}
 
 	public boolean createResponse(Argument Destination, Argument Date, Argument FlightStatus, Argument FlightID, Argument FlightPrice, Argument AirlineName) throws RemoteException
 	{		
@@ -83,17 +88,15 @@ public class AirlineOKC extends OKCFacadeImpl
 		return true;
 	}
 	
-	public boolean emitNotification(Argument Status, Argument Eticket){
-		addMessageTraceQueue("acquire", "airline", "NotificationAL", Status.getValue().toString());
+	public boolean emitNotificationAL(Argument Status, Argument Eticket){
+		
 		Eticket.setValue("Purchased cancelled");
 
 		return true;
 	}
 	
 	private void addMessageTraceQueue(String emissor, String receptor, String name, Object content) {
-		MessageTrace message = new MessageTrace(emissor, receptor, name, content.toString());
-
-		MessageTraceQueue queue = new MessageTraceQueue();
+		 MessageTrace message = new MessageTrace(emissor, receptor, name, content.toString());
 		queue.add(message);		
 	}
 
