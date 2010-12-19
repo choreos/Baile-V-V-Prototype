@@ -23,15 +23,15 @@ public class AcquirerWS {
 	
 	public AcquirerWS() throws SQLException, ClassNotFoundException, IOException{
 		
-		File dataBase = new File("acquirer.db");
-		
+		File dataBase = new File("db/acquirer.db");
+				
 		if(!dataBase.exists()){ 
-			dbCon = new DBAcquirerConnection("acquirer.db");
+			dbCon = new DBAcquirerConnection("db/acquirer.db");
 			dbCon.initDB();
 		}
 		
 		else
-			dbCon = new DBAcquirerConnection("acquirer.db");
+			dbCon = new DBAcquirerConnection("db/acquirer.db");
 	}
 	
 	@GET

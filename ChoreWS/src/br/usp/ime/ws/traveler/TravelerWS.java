@@ -13,7 +13,7 @@ public class TravelerWS {
 
 	
 	public TravelerWS() throws SQLException, ClassNotFoundException {
-			dbCon = new DBMessagesConnection("messagesqueue.db");
+			dbCon = new DBMessagesConnection("./db/messagesqueue.db");
 			dbCon.initDB();
 	}
 	

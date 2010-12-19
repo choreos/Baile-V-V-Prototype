@@ -67,7 +67,7 @@ public class ChoreWS {
 	public static void main(String[] args) throws SQLException, ClassNotFoundException, IllegalArgumentException, IOException {
 		ChoreWS services = new ChoreWS();
 		
-		String option = args[1];
+		String option = "all";
 		
 		if(option.equals("traveler"))
 			services.publishTravelerWS();
