@@ -8,6 +8,7 @@
 	<property name="jarname" value="${build}/BookTrip.jar" />
 	<property name="OK-kernel" value="${libdir}/ok.jar" />
 	<property name="test.suite.name" value="br.usp.ime.test" />
+	<property name="test.reports" value="./test-reports" /> 
 
 	<path id="test.classpath">
   		<pathelement location="${test_bin_dir}" />
@@ -47,29 +48,83 @@
 
 	<target name="runUnitTests">
   		<junit printsummary="yes" fork="yes" haltonfailure="yes">
-    			<test name="${test.suite.name}.UnitTestSuite" />
-    			<formatter type="plain" usefile="false" />
+    			<test name="${test.suite.name}.UnitTestSuite" todir="${test.reports}/unit" />
+    			<formatter type="xml"  />
     			<classpath refid="test.classpath" />
   		</junit>
+
+		<junitreport todir="${test.reports}/unit">
+   	        	<fileset dir="${test.reports}/unit">
+      				<include name="TEST-*.xml" />
+    			</fileset>
+    			<report todir="${test.reports}/unit" />
+  		</junitreport>
+		
+		<delete>
+		 	<fileset dir="${test.reports}/unit" includes="*.xml" />
+		</delete>
 	</target>
 
         <target name="runIntegrationTests">
                 <junit printsummary="yes" fork="yes" haltonfailure="yes">
-                        <test name="${test.suite.name}.IntegrationTestSuite" />
-                        <formatter type="plain" usefile="false" />
+                        <test name="${test.suite.name}.IntegrationTestSuite" todir="${test.reports}/integration" />
+                        <formatter type="xml" />
                         <classpath refid="test.classpath" />
                 </junit>
+
+		<junitreport todir="${test.reports}/integration">
+                	<fileset dir="${test.reports}/integration">
+                        	<include name="TEST-*.xml" />
+                	</fileset>
+                	<report todir="${test.reports}/integration" />
+                </junitreport>
+                
+                <delete>
+                        <fileset dir="${test.reports}/integration" includes="*.xml" />
+                </delete>
         </target>
 
         <target name="runAcceptanceTests">
                 <junit printsummary="yes" fork="yes" haltonfailure="yes">
-                        <test name="${test.suite.name}.AcceptanceTestSuite" />
-                        <formatter type="plain" usefile="false" />
+                        <test name="${test.suite.name}.AcceptanceTestSuite" todir="${test.reports}/acceptance" />
+                        <formatter type="xml" />
                         <classpath refid="test.classpath" />
                 </junit>
+
+		<junitreport todir="${test.reports}/acceptance">
+                        <fileset dir="${test.reports}/acceptance">
+                                <include name="TEST-*.xml" />
+                        </fileset>
+                        <report todir="${test.reports}/acceptance" />
+                </junitreport>
+
+                <delete>
+                        <fileset dir="${test.reports}/acceptance" includes="*.xml" />
+                </delete>
         </target>
 
-	<target name="runAllTests" depends="runUnitTests, runIntegrationTests, runAcceptanceTests" />
+	<target name="runAllTests">
+		<junit fork="yes" printsummary="yes" haltonfailure="yes">
+      			<batchtest fork="yes"  todir="${test.reports}/all" >
+        			<fileset dir="${test_bin_dir}" >
+					<include name="**/*Suite.class" />
+				</fileset>
+      			</batchtest>
+			<classpath refid="test.classpath" />
+                        <formatter type="xml" />
+    		</junit>
+
+		<junitreport todir="${test.reports}/all">
+                        <fileset dir="${test.reports}/all">
+                                <include name="TEST-*.xml" />
+                        </fileset>
+                        <report todir="${test.reports}/all" />
+                </junitreport>
+
+                <delete>
+                        <fileset dir="${test.reports}/all" includes="*.xml" />
+                </delete>
+	</target>
 
 	<target name="clean" description="Remove all compilation products to ensure a clean build">
 		<delete dir="${bindir}" />

@@ -2,7 +2,7 @@
 
 # Determine local host's IP
 clear
-echo -n "Determining local host's IP... "
+echo -n "Determining local host's IP...  "
 IP=`java -cp lib/ScanIP.jar Main`
 echo "$IP"
 
@@ -31,34 +31,34 @@ ARGS_PEER_ACQUIRER="-cp $CP br.usp.ime.booktrip.peer.Acquirer -discovery-bootstr
 #Clean databases
 rm -r db/*.db
 #Commands
-echo -n "Stopping currently running instances... "
+echo  "Stopping currently running instances... "
 ./stopChor.sh
 for a in `ps aux | grep "java -jar lib/chore-ws.jar" | grep -v grep | awk '{print $2}'`; do kill -9 $a; done
 echo "Done"
 
-echo -n "Building..."
+echo "Building..."
 ant 
 echo "Done"
 
-echo -n "Lauching the web services... "
+echo "Lauching the web services... "
 java $ARGS_WSs &
 sleep 5
 echo "Done"
 
 #Start queue
-echo -n "Starting message trace queue... "
-java $ARGS_QUEUE
+echo "Starting message trace queue... "
+java $ARGS_QUEUE &
 echo "Done"
 
 echo -n "Launching the Discovery Service... "
 rm -rf FreePastry-Storage-Root/
 java $ARGS_DS > $LOG_DS &
-sleep 10
+sleep 12
 echo "Done"
 
 echo -n "Publishing the Interaction Model... "
 java $ARGS_PEER_PUBLISHER > $LOG_PEER_PUBLISHER &
-sleep 5
+sleep 10
 echo "Done"
 
 echo -n "Launching the traveler... "
@@ -81,9 +81,13 @@ java $ARGS_PEER_ACQUIRER > $LOG_PEER_ACQUIRER &
 sleep 4
 echo "Done"
 
+echo -n "Setting up roles... "
+sleep 20
+echo "Done"
+echo  "Choreography started ... "
 
 read -n1 -p "Press any key to quit..."
-./stopAll.sh
+./stopChor.sh
 for a in `ps aux | grep "java -jar lib/chore-ws.jar" | grep -v grep | awk '{print $2}'`; do kill -9 $a; done
 
 echo ""
