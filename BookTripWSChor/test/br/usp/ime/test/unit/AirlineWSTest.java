@@ -25,6 +25,7 @@ public class AirlineWSTest {
 	final String RESERVE = "R3153-1|2000";
 	final String USER = "John Locke";
 	
+	
 	@BeforeClass
 	public static void publishAirlineService() {
 		Bash.deployService("airline");

@@ -47,8 +47,12 @@
 	</target>
 
 	<target name="runUnitTests">
-  		<junit printsummary="yes" fork="yes" haltonfailure="yes">
-    			<test name="${test.suite.name}.UnitTestSuite" todir="${test.reports}/unit" />
+  		<junit printsummary="yes" fork="yes" haltonfailure="no">
+    			<batchtest fork="yes"  todir="${test.reports}/unit" >
+                                <fileset dir="${test_bin_dir}" >
+                                        <include name="**/unit/*Test.class" />
+                                </fileset>
+                        </batchtest>
     			<formatter type="xml"  />
     			<classpath refid="test.classpath" />
   		</junit>
@@ -66,9 +70,13 @@
 	</target>
 
         <target name="runIntegrationTests">
-                <junit printsummary="yes" fork="yes" haltonfailure="yes">
-                        <test name="${test.suite.name}.IntegrationTestSuite" todir="${test.reports}/integration" />
-                        <formatter type="xml" />
+                <junit printsummary="yes" fork="yes" haltonfailure="no">
+                        <batchtest fork="yes"  todir="${test.reports}/integration" >
+                                <fileset dir="${test_bin_dir}" >
+                                        <include name="**/integration/*Test.class" />
+                                </fileset>
+                        </batchtest>
+			<formatter type="xml" />
                         <classpath refid="test.classpath" />
                 </junit>
 
@@ -85,9 +93,13 @@
         </target>
 
         <target name="runAcceptanceTests">
-                <junit printsummary="yes" fork="yes" haltonfailure="yes">
-                        <test name="${test.suite.name}.AcceptanceTestSuite" todir="${test.reports}/acceptance" />
-                        <formatter type="xml" />
+                <junit printsummary="yes" fork="yes" haltonfailure="no">
+                        <batchtest fork="yes"  todir="${test.reports}/acceptance" >
+                                <fileset dir="${test_bin_dir}" >
+                                        <include name="**/acceptance/*Test.class" />
+                                </fileset>
+                        </batchtest>
+			<formatter type="xml" />
                         <classpath refid="test.classpath" />
                 </junit>
 
@@ -104,10 +116,10 @@
         </target>
 
 	<target name="runAllTests">
-		<junit fork="yes" printsummary="yes" haltonfailure="yes">
+		<junit fork="yes" printsummary="yes" haltonfailure="no">
       			<batchtest fork="yes"  todir="${test.reports}/all" >
         			<fileset dir="${test_bin_dir}" >
-					<include name="**/*Suite.class" />
+					<include name="**/*Test.class" />
 				</fileset>
       			</batchtest>
 			<classpath refid="test.classpath" />

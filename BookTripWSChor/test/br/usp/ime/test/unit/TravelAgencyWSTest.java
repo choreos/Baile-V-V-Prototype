@@ -16,7 +16,7 @@ public class TravelAgencyWSTest {
 	final static String BASE_URL = "http://localhost:9881/travelagency";
 	private static RESTClient client;
 	
-
+	
 	@BeforeClass
 	public static void publishTravelAgencyService() {
 		Bash.deployService("travelagency");

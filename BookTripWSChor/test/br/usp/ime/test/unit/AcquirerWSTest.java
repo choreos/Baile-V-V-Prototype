@@ -43,7 +43,7 @@ public class AcquirerWSTest {
 	
 	@Test
 	public void shouldAddAndRetrieveTheAccount(){
-		String body = "1234|Jacob|1000";
+		String body = "1234|Jacobs|1000";
 		client.POST("/account", body);
 		String response = client.GET("/account/1234");
 		

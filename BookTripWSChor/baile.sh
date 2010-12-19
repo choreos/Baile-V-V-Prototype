@@ -44,7 +44,7 @@ do
 	echo ""
 	echo -e "\033[1mtest reports saved in ./test-reports/acceptance dir....\033[0m"
 
-  elif [ $line == "run_all-test" ]; then
+  elif [ $line == "run_all-tests" ]; then
  	ant runAllTests
 	echo ""
  	echo -e "\033[1mtest reports saved in test-reports/all dir....\033[0m"
