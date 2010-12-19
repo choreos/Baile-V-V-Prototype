@@ -17,7 +17,7 @@ do
 		CHOR_STARTED=1;
 	fi
 
-  if [ $line == "stop_chore" ]; then
+  elif [ $line == "stop_chore" ]; then
 	if [ $CHOR_STARTED -eq 0 ]; then
                 echo -e "\033[1mcoreography have not been started...\033[0m"
         else
@@ -51,7 +51,9 @@ do
   
   else
 	echo "invalid command"
+  
   fi
+	
   done
 
 exit 0
