@@ -29,10 +29,10 @@ ARGS_PEER_AIRLINE="-cp $CP br.usp.ime.booktrip.peer.AirLine -discovery-bootstrap
 ARGS_PEER_ACQUIRER="-cp $CP br.usp.ime.booktrip.peer.Acquirer -discovery-bootstrap-host $IP -port-number 5011 -userID Acquirer@openk.org";
 
 #Clean databases
-rm -r *.db
+rm -r db/*.db
 #Commands
 echo -n "Stopping currently running instances... "
-./stopAll.sh
+./stopChor.sh
 for a in `ps aux | grep "java -jar lib/chore-ws.jar" | grep -v grep | awk '{print $2}'`; do kill -9 $a; done
 echo "Done"
 

@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import javax.swing.JOptionPane;
-
 public class MessageTraceQueue {
 	private Connection conn;
 	private  static Statement stm;
@@ -17,7 +15,7 @@ public class MessageTraceQueue {
 	public MessageTraceQueue() {
 		try {
 			Class.forName("org.sqlite.JDBC");
-			this.conn = DriverManager.getConnection("jdbc:sqlite:messageTraceQueue.db");
+			this.conn = DriverManager.getConnection("jdbc:sqlite:./db/messageTraceQueue.db");
 			stm = this.conn.createStatement();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();

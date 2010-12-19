@@ -69,13 +69,7 @@
                 </junit>
         </target>
 
-	   <target name="runAllTests">
-                <junit printsummary="yes" fork="yes" haltonfailure="yes">
-                        <test name="${test.suite.name}.AllTestSuites" />
-                        <formatter type="plain" usefile="false" />
-                        <classpath refid="test.classpath" />
-                </junit>
-        </target>
+	<target name="runAllTests" depends="runUnitTests, runIntegrationTests, runAcceptanceTests" />
 
 	<target name="clean" description="Remove all compilation products to ensure a clean build">
 		<delete dir="${bindir}" />

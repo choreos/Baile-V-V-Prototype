@@ -54,11 +54,11 @@ public class Bash {
 	public static void cleanAcquirerDatabase() {
 		Connection conn;
 		Statement stm;
-		if (new File("acquirer.db").exists()) {
+		if (new File("./db/acquirer.db").exists()) {
 
 			try {
 				Class.forName("org.sqlite.JDBC");
-				conn = DriverManager.getConnection("jdbc:sqlite:acquirer.db");
+				conn = DriverManager.getConnection("jdbc:sqlite:db/acquirer.db");
 				stm = conn.createStatement();
 
 				stm.executeUpdate("Delete from Accounts");
@@ -75,11 +75,11 @@ public class Bash {
 
 		Connection conn;
 		Statement stm;
-		if (new File("airline.db").exists()) {
+		if (new File("./db/airline.db").exists()) {
 
 			try {
 				Class.forName("org.sqlite.JDBC");
-				conn = DriverManager.getConnection("jdbc:sqlite:airline.db");
+				conn = DriverManager.getConnection("jdbc:sqlite:db/airline.db");
 				stm = conn.createStatement();
 
 				stm.executeUpdate("Delete from Flights");
@@ -96,12 +96,12 @@ public class Bash {
 	public static void cleanTravelAgencyDatabase() {
 		Connection conn;
 		Statement stm;
-		if (new File("travelagency.db").exists()) {
+		if (new File("./db/travelagency.db").exists()) {
 
 			try {
 				Class.forName("org.sqlite.JDBC");
 				conn = DriverManager
-						.getConnection("jdbc:sqlite:travelagency.db");
+						.getConnection("jdbc:sqlite:db/travelagency.db");
 				stm = conn.createStatement();
 
 				stm.executeUpdate("Delete from Users");
@@ -118,12 +118,12 @@ public class Bash {
 	public static void cleanMessageTraceQueueDatabase() {
 		Connection conn;
 		Statement stm;
-		if (new File("messageTraceQueue.db").exists()) {
+		if (new File("./db/messageTraceQueue.db").exists()) {
 
 			try {
 				Class.forName("org.sqlite.JDBC");
 				conn = DriverManager
-						.getConnection("jdbc:sqlite:messageTraceQueue.db");
+						.getConnection("jdbc:sqlite:db/messageTraceQueue.db");
 				stm = conn.createStatement();
 
 				stm.executeUpdate("Delete from MessageTraceQueue");
