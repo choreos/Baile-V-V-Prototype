@@ -9,6 +9,7 @@ do
 	./scripts/setUp.sh
   
   elif [ $line == "exit" ]; then
+	./scripts/stopChor.sh
 	exit 0
   
   else
