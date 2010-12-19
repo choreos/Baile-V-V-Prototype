@@ -11,7 +11,7 @@ public class AirlineWS {
 	private DBAirlineConnection dbCon;
 	
 	public AirlineWS() throws SQLException, ClassNotFoundException{
-		dbCon = new DBAirlineConnection("airline.db");
+		dbCon = new DBAirlineConnection("db/airline.db");
 		dbCon.initDB();
 		loadDB();
 	}

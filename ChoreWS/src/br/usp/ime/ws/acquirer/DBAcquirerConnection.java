@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.StringTokenizer;
 
-import javax.swing.JOptionPane;
-
 public class DBAcquirerConnection {
 	private Connection conn;
 	private Statement stm;

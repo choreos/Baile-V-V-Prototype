@@ -19,15 +19,15 @@ public class TravelAgencyWS {
 	
 	public TravelAgencyWS() throws SQLException, ClassNotFoundException, IOException{
 		
-		File dataBase = new File("travelagency.db");
+		File dataBase = new File("./db/travelagency.db");
 		
 		if(!dataBase.exists()){ 
-			dbCon = new DBTravelAgencyConnection("travelagency.db");
+			dbCon = new DBTravelAgencyConnection("./db/travelagency.db");
 			dbCon.initDB();
 		}
 		
 		else
-			dbCon = new DBTravelAgencyConnection("travelagency.db");
+			dbCon = new DBTravelAgencyConnection("./db/travelagency.db");
 	}
 	
 	@GET
