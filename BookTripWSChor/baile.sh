@@ -11,7 +11,7 @@ do
   
   if [ $line == "start_chore" ]; then
 	if [ $CHOR_STARTED -eq 1 ]; then
-		echo -e "\033[1mcoreography have been started...\033[0m"
+		echo -e '\E[1;31mcoreography has already been started ...'; tput sgr0
 	else
 		./scripts/setUp.sh
 		CHOR_STARTED=1;
@@ -19,10 +19,11 @@ do
 
   elif [ $line == "stop_chore" ]; then
 	if [ $CHOR_STARTED -eq 0 ]; then
-                echo -e "\033[1mcoreography have not been started...\033[0m"
-        else
+        	echo -e '\E[1;31mcoreography has not been started ...'; tput sgr0
+	else
                 ./scripts/stopChor.sh
                 CHOR_STARTED=0;
+		echo -e "\033[1mcoreography stopped...\033[0m"
         fi
 	  
   elif [ $line == "exit" ]; then
