@@ -1,6 +1,7 @@
 #!/bin/bash
 
-MY_PROMPT='baile$ '
+MY_PROMPT='baile$ ';
+CHOR_STARTED=0;
 
 while :
 do
@@ -9,8 +10,21 @@ do
   read line
   
   if [ $line == "start_chore" ]; then
-	./scripts/setUp.sh
-  
+	if [ $CHOR_STARTED -eq 1 ]; then
+		echo -e "\033[1mcoreography have been started...\033[0m"
+	else
+		./scripts/setUp.sh
+		CHOR_STARTED=1;
+	fi
+
+  if [ $line == "stop_chore" ]; then
+	if [ $CHOR_STARTED -eq 0 ]; then
+                echo -e "\033[1mcoreography have not been started...\033[0m"
+        else
+                ./scripts/stopChor.sh
+                CHOR_STARTED=0;
+        fi
+	  
   elif [ $line == "exit" ]; then
 	./scripts/stopChor.sh
 	exit 0
