@@ -2,9 +2,10 @@ This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
 The top-level auxiliary file: user-guide.aux
 The style file: abbrv.bst
 Database file #1: references.bib
+Warning--I didn't find a database entry for "tech-report"
 You've used 3 entries,
             2118 wiz_defined-function locations,
-            510 strings with 4016 characters,
+            511 strings with 4027 characters,
 and the built_in function-call counts, 644 in all, are:
 = -- 60
 > -- 21
@@ -43,3 +44,4 @@ warning$ -- 0
 while$ -- 6
 width$ -- 4
 write$ -- 32
+(There was 1 warning)

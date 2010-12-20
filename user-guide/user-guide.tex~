@@ -41,7 +41,7 @@
 }				%
 
 
-%% Define the fields to be displayed by a \maketitle command\includegraphics[]{tech_report_vv.pdf}
+%% Define the fields to be displayed by a \maketitle command\includegraphics[]{underreported.pdf}
 
 \sloppy
 \author{Felipe M. Besson \\ Pedro M. B. Leal}
@@ -52,13 +52,17 @@ University of S\~ao Paulo (USP)
 \email{\{besson,pedrombl\}@ime.usp.br} }
 
 
-\begin{document}	% Critical
-\maketitle			% Use the \author, \title and \date info
+\begin{document}	
+\maketitle			
 
 \date 
 
-
 \newpage
+\section { Overview }
+This software prototype is part of HP Baile Project\footnote{Baile Project: http://ccsl.ime.usp.br/baile/}, more specifically, 
+this prototype belongs to the research line ``Verification \& Validation of Choreographies''. More details about this research line and the
+basis of our software can be found in this technical report~\cite{tech-report}. In this user guide, we described in steps how to install and use the software.
+
 
 \section{ Prerequisites}
 The following software elements must be installed and working:
@@ -70,7 +74,29 @@ The following software elements must be installed and working:
 \end{itemize}
 
 \section{ Where to download ? }
-The source code, the scripts and its dependecies are available on:
+The source code, the scripts and its dependencies are available on:
+
+\section{ Software directory structure}
+Our prototype are structure in the following files and directories (just the most important are described bellow):
+
+ \begin{table}[htb]
+  \centering
+  \begin{tabular}{|l|l|}
+  \hline
+  file/directory & Description \\
+  \hline
+  \hline
+  baile.sh & script to start the application \\
+  src & source code \\
+  test & test code \\
+  config & OpenKnowledge configuration files \\
+  lcc & OpenKnowledge interaction model \\
+  lib & third-party dependencies \\
+  log & log files \\
+  test-reports & html test reports 
+  \hline
+  \end{tabular}
+  \end{table}
 
 \section{ How to use ? }
 In this section, we detailed the main steps to interact with the application.
@@ -86,17 +112,17 @@ In this section, we detailed the main steps to interact with the application.
   \label{welcome-screen}
   \end{figure}
 
-  \item  In the prompt, start the coreography by typing \textbf{start\_chore} (as showed in Figure~\ref{chore})
+  \item  In the prompt, start the choreography by typing \textbf{start\_chore} (as showed in Figure~\ref{chore})
   
   \begin{figure}[htbp]
   \centering
   \setlength\fboxrule{1.0pt}
   \scalebox{0.5}{\fbox{\includegraphics{fig/chore}}}
-  \caption{Starting choreography}
+  \caption{Starting the choreography}
   \label{chore}
   \end{figure}
 
-  \item Once all components of choreography (services, roles, OpenKnowledge entitites) have been started successfully (as showed in Figure~\ref{chore}), the tests can be execute. The following commands are valid:
+  \item Once all components of choreography (services, roles, OpenKnowledge entities) have been started successfully (as showed in Figure~\ref{chore}), the tests can be execute. The following commands are valid:
 
   \begin{table}[htb]
   \centering
@@ -109,7 +135,7 @@ In this section, we detailed the main steps to interact with the application.
   run\_integration-tests & run the integration tests \\
   run\_acceptance-tests & run the acceptance tests \\
   run\_all-tests & run all tests \\
- 
+  \hline
   \end{tabular}
   \end{table}
 
@@ -118,7 +144,6 @@ In this section, we detailed the main steps to interact with the application.
 
 \section{ How to add more test cases ? }
 
-\section { Project organization }
 
 \section{ Known Issues }
 
