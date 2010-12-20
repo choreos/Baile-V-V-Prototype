@@ -67,18 +67,20 @@ public class ChoreWS {
 	public static void main(String[] args) throws SQLException, ClassNotFoundException, IllegalArgumentException, IOException {
 		ChoreWS services = new ChoreWS();
 		
-		String option = "all";
+		String option = args[1];
 		
 		if(option.equals("traveler"))
 			services.publishTravelerWS();
-		if(option.equals("airline"))
+		else if(option.equals("airline"))
 			services.publishAirlineWS();
-		if(option.equals("travelagency"))
+		else if(option.equals("travelagency"))
 			services.publishTravelAgencyWS();
-		if(option.equals("acquirer"))
+		else if(option.equals("acquirer"))
 			services.publishAcquirerWS();
-		if(option.equals("all"))
+		else if(option.equals("all"))
 			services.publishAll();
+		else
+			throw new IllegalArgumentException("invalid option");
 	}
 
 
