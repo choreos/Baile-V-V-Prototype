@@ -86,7 +86,7 @@ verify "Starting" $LOG_WS
 echo -n "Starting message trace queue... "
 java $ARGS_QUEUE > $LOG_QUEUE 2>&1 &
 sleep 5
-verify "started" $LOG_QUEUE
+echo -e '\E[1;32mDone'; tput sgr0
 
 
 # Launching DS
