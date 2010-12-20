@@ -60,7 +60,7 @@ University of S\~ao Paulo (USP)
 
 \newpage
 
-\section{Installation prerequisites}
+\section{ Prerequisites}
 The following software elements must be installed and working:
 
 \begin{itemize}
@@ -69,6 +69,41 @@ The following software elements must be installed and working:
  \item Ant~\cite{ant}
 \end{itemize}
 
+\section{ Where to download ? }
+The source code, the scripts and its dependecies are available on:
+
+\section{ How to use ? }
+In this section, we detailed the main steps to interact with the application.
+
+\begin{enumerate}
+ \item Start the script \textbf{baile.sh}, and then, the application will start:
+
+  \begin{figure}[htbp]
+  \centering
+  \setlength\fboxrule{1.0pt}
+  \scalebox{0.5}{\fbox{\includegraphics{fig/welcome-screen}}}
+  \caption{Welcome screen}
+  \label{welcome-screen}
+  \end{figure}
+
+  \item  In the prompt, start the coreography by typing \textbf{start\_chore} (as showed in Figure~\ref{chore})
+  
+  \begin{figure}[htbp]
+  \centering
+  \setlength\fboxrule{1.0pt}
+  \scalebox{0.5}{\fbox{\includegraphics{fig/chore}}}
+  \caption{Starting choreography}
+  \label{chore}
+  \end{figure}
+
+\end{enumerate}
+
+
+\section{ How to add more test cases ? }
+
+\section { Project organization }
+
+\section{ Known Issues }
 
 \section{Acknowledgements}
 This research received funding from HP Brasil under the Baile Project.
