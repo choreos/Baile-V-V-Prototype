@@ -4,17 +4,23 @@ MY_PROMPT='baile$ ';
 CHOR_STARTED=0;
 
 help_message() {
+	echo ""
 	echo "Commands: "
-	echo "start_chore - enacting the choreography"
-	echo "run_unit-tests - run the unit tests"
-	echo "run_integration-tests - run the integration tests"
-	echo "run_acceptance-tests - run the acceptance tests"
-	echo "run_all-tests - run all tests"
-	echo "exit - stop the choreography if it is running and quit the script"
-	echo "help - show this message"
+	echo -e "\033[1mstart_chore\033[0m - start the choreography"
+	echo -e "\033[1mstop_chore\033[0m - stop the choreography"
+	echo -e "\033[1mrun_unit-tests\033[0m - run the unit tests"
+	echo -e "\033[1mrun_integration-tests\033[0m run the integration tests"
+	echo -e "\033[1mrun_acceptance-tests\033[0m - run the acceptance tests"
+	echo -e "\033[1mrun_all-tests\033[0m - run all tests"
+	echo -e "\033[1mexit\033[0m - stop the choreography if it is running and quit"
+	echo -e "\033[1mhelp\033[0m - show this message"
+	echo  ""
+	echo "Contacts:"
+	echo "Felipe Besson <besson@ime.usp.br>"
+	echo "Pedro Leal <pedrombl@ime.usp.br>"
 }
-
-echo "Baile script tests"
+echo ""
+echo -e "\E[1;34mBaile V&V - dez/2010"; tput sgr0
 help_message
 
 while :
