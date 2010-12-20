@@ -148,6 +148,6 @@ if [ $STARTED -eq 1 ]; then
 	
 else
 	echo -e '\E[1;33mChoreography not started.'; tput sgr0
-	echo "error" < log.txt
+	echo "error" > log.txt
 fi
 

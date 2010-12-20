@@ -29,9 +29,10 @@ do
 	else
 		./scripts/setUp.sh
 		result=$(grep "started" log.txt)
-		if [ $result == "started" ]; then	
+		if [ -n "$result" ]; then	
 			CHOR_STARTED=1;
 		fi
+		rm log.txt
 	fi
 
   elif [ $line == "stop_chore" ]; then
