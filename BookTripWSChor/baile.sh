@@ -14,7 +14,10 @@ do
 		echo -e '\E[1;31mcoreography has already been started ...'; tput sgr0
 	else
 		./scripts/setUp.sh
-		CHOR_STARTED=1;
+		result=$(grep "started" log.txt)
+		if [ $result == "started" ]; then	
+			CHOR_STARTED=1;
+		fi
 	fi
 
   elif [ $line == "stop_chore" ]; then

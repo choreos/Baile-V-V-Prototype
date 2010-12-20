@@ -30,6 +30,7 @@ public class MessageTraceQueue {
 			stm.executeUpdate("DROP TABLE IF EXISTS MessageTraceQueue");
 			stm.executeUpdate("CREATE TABLE MessageTraceQueue (emissor varchar(20), receptor varchar(20),"
 					+ "name varchar(30), content varchar(50));");
+			System.out.println("Queue started");
 
 		} catch (SQLException e) {
 			e.printStackTrace();

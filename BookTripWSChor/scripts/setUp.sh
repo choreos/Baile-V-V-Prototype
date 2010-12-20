@@ -1,5 +1,7 @@
 #!/bin/bash
 
+STARTED=1;
+
 # Determine local host's IP
 # -------------------------------------------------
 echo ""
@@ -40,6 +42,21 @@ ARGS_PEER_AIRLINE="-cp $CP br.usp.ime.booktrip.peer.AirLine -discovery-bootstrap
 ARGS_PEER_ACQUIRER="-cp $CP br.usp.ime.booktrip.peer.Acquirer -discovery-bootstrap-host $IP -port-number 5011 -userID Acquirer@openk.org";
 
 
+# Functions
+# -------------------------------------------------
+function verify(){
+a=$(grep "$1" "$2" )
+
+if [ -z "$a" ]; then
+        echo -ne '\E[1;31mError'; tput sgr0
+	echo " (please check $2 for more information)"
+	STARTED=0;
+else
+        echo -e '\E[1;32mDone'; tput sgr0
+fi
+}
+
+
 # Stopping running instances
 # -------------------------------------------------
 echo -n "Stopping currently running instances... "
@@ -53,7 +70,7 @@ echo -e '\E[1;32mDone'; tput sgr0
 # -------------------------------------------------
 echo -n "Compiling components... "
 ant > $LOG_ANT
-echo -e '\E[1;32mDone'; tput sgr0
+verify "SUCCESSFUL" $LOG_ANT 
 
 
 # Publishing web services
@@ -61,14 +78,15 @@ echo -e '\E[1;32mDone'; tput sgr0
 echo -n "Publishing the web services... "
 java $ARGS_WS > $LOG_WS 2>&1 &
 sleep 5
-echo -e '\E[1;32mDone'; tput sgr0
+verify "Starting" $LOG_WS
 
 
 # Starting queue
 # -------------------------------------------------
 echo -n "Starting message trace queue... "
 java $ARGS_QUEUE > $LOG_QUEUE 2>&1 &
-echo -e '\E[1;32mDone'; tput sgr0
+sleep 5
+verify "started" $LOG_QUEUE
 
 
 # Launching DS
@@ -87,14 +105,12 @@ java $ARGS_PEER_PUBLISHER > $LOG_PEER_PUBLISHER &
 sleep 10
 echo -e '\E[1;32mDone'; tput sgr0
 
-
 # Launching traveler
 # -------------------------------------------------
 echo -n "Launching the traveler... "
 java $ARGS_PEER_TRAVELER > $LOG_PEER_TRAVELER &
 sleep 4
 echo -e '\E[1;32mDone'; tput sgr0
-
 
 # Launching travel agency
 # -------------------------------------------------
@@ -111,6 +127,7 @@ java $ARGS_PEER_AIRLINE > $LOG_PEER_AIRLINE &
 sleep 4
 echo -e '\E[1;32mDone'; tput sgr0
 
+
 # Launching acquirer
 # -------------------------------------------------
 echo -n "Launching the acquirer... "
@@ -118,10 +135,19 @@ java $ARGS_PEER_ACQUIRER > $LOG_PEER_ACQUIRER &
 sleep 4
 echo -e '\E[1;32mDone'; tput sgr0
 
+
 # Finishing setting up
 # -------------------------------------------------
 echo -n "Setting up roles... "
 sleep 20
-echo -e '\E[1;32mDone'; tput sgr0
-echo -e '\E[1;33mChoreography started.'; tput sgr0
+verify "*** SUBSCRIBED! ***" $LOG_PEER_TRAVELER
+
+if [ $STARTED -eq 1 ]; then
+	echo -e '\E[1;33mChoreography started.'; tput sgr0
+	echo "started" > log.txt
+	
+else
+	echo -e '\E[1;33mChoreography not started.'; tput sgr0
+	echo "error" < log.txt
+fi
 
