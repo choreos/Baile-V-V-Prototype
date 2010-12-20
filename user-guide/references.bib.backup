@@ -1,0 +1,6 @@
+@Misc{ java6,
+	author = "Oracle",
+	title = "{J}ava SE Downloads",
+	howpublished = "Available on: \verb*|http://www.oracle.com/technetwork/java/javase/downloads/index.html>|",
+	year = "2010"
+}

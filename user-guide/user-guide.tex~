@@ -1,0 +1,84 @@
+\documentclass{article}	% essential first line
+\usepackage{float}		% this is to place figures where requested!
+\usepackage{times}		% this uses fonts which will look nice in PDF format
+\usepackage{graphicx}		% needed for the figures
+\usepackage{url}
+\usepackage{sbc-template} 
+\usepackage[scaled]{uarial}
+
+
+%% Here I adjust the margins
+
+\oddsidemargin 0.1in		% Left margin is 1in + this value
+\textwidth 6.25in		% Right margin is not set explicitly
+\topmargin -0.2in			% Top margin is 1in + this value
+\textheight 9in			% Bottom margin is not set explicitly
+\columnsep 0.25in		% separation between columns
+
+%% Define a macro for inserting postscript images
+%% ==============================================
+%% This is a macro which nominally takes 3 parameters, 
+%% it would be used as follows to insert and encapsulated postscript
+%% image at the location where it is used.
+%%
+%% \EPSFIG{epsfilename}{caption}{label}
+%% - epsfilename is the name of the encapsulated postscript file to be
+%%               inserted at this location
+%% - caption is the text to be shown as the figure caption, it will be
+%%           prepended by Figure X.  The number X can be referenced
+%%           using the label parameter.
+%% - label is a name given to the figure, it can be referenced using the
+%%         \ref{label} command.
+
+\def\EPSFIG[#1]#2#3#4{		% Don't be scared by this monsrosityok
+\begin{figure}[H]		% it is a macro to save typing later
+\begin{center}			% 
+\includegraphics[#1]{#2}	%
+\end{center}			%
+\caption{#3}			%
+\label{#4}			%
+\end{figure}			%
+}				%
+
+
+%% Define the fields to be displayed by a \maketitle command\includegraphics[]{tech_report_vv.pdf}
+
+\sloppy
+\author{Felipe M. Besson \\ Pedro M. B. Leal}
+\title{\begin{huge}\textbf{User Guide}\end{huge} \\ Baile V\&V Prototype}
+ 
+\address{Department of Computer Science \\ Institute of Mathematics and Statistics\\
+University of S\~ao Paulo (USP) 
+\email{\{besson,pedrombl\}@ime.usp.br} }
+
+
+\begin{document}	% Critical
+\maketitle			% Use the \author, \title and \date info
+
+\date 
+
+
+\newpage
+
+\section{ prerequisites}
+The following software elements must be installed and working:
+
+\begin{itemize}
+ \item Java 6~\cite{java6}
+ \item SQLite 3~\cite{sql3}
+ \item Ant~\cite{ant}
+\end{itemize}
+
+
+\section{Acknowledgements}
+This research received funding from HP Brasil under the Baile Project.
+
+\section{Appendices}
+
+
+\newpage
+\bibliographystyle{abbrv}	% Order by citation
+\bibliography{references}
+
+\end{document}
+

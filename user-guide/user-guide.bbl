@@ -1,0 +1,19 @@
+\begin{thebibliography}{1}
+
+\bibitem{ant}
+{A}pache {A}nt.
+\newblock Java library and command-line for automated building.
+\newblock Available on: \verb*|<http://ant.apache.org/>|, 2010.
+
+\bibitem{java6}
+Oracle.
+\newblock {J}ava se downloads.
+\newblock Available on: \\
+  \verb*|<http://www.oracle.com/technetwork/java/javase>|, 2010.
+
+\bibitem{sql3}
+{SQL}ite.
+\newblock Sql database engine.
+\newblock Available on: \verb*|<http://www.sqlite.org>|, 2010.
+
+\end{thebibliography}
