@@ -2,6 +2,7 @@
 
 	<property name="bindir" value="./bin" />
 	<property name="srcdir" value="./src" />
+	<property name="tstdir" value="./test" />
 	<property name="test_bin_dir" value="${bindir}" />
 	<property name="libdir" value="./lib" />
 	<property name="build"  value="./build" />
@@ -46,7 +47,20 @@
 		<jar destfile="${jarname}" basedir="${bindir}" />
 	</target>
 
-	<target name="runUnitTests">
+  <target name="compile-tests">
+    <javac srcdir="${tstdir}" destdir="${test_bin_dir}" includeAntRuntime="false">
+      <classpath refid="test.classpath"/>
+    </javac>
+  </target>
+
+  <target name="clean-compile-test">
+    <delete>
+      <fileset dir="${tstdir}" includes="**/*.class" />
+    </delete>
+  </target>
+	
+
+	<target name="runUnitTests" depends="compile-tests">
   		<junit printsummary="yes" fork="yes" haltonfailure="no">
     			<batchtest fork="yes"  todir="${test.reports}/unit" >
                                 <fileset dir="${test_bin_dir}" >
@@ -69,7 +83,7 @@
 		</delete>
 	</target>
 
-        <target name="runIntegrationTests">
+        <target name="runIntegrationTests" depends="compile-tests">
                 <junit printsummary="yes" fork="yes" haltonfailure="no">
                         <batchtest fork="yes"  todir="${test.reports}/integration" >
                                 <fileset dir="${test_bin_dir}" >
@@ -92,7 +106,7 @@
                 </delete>
         </target>
 
-        <target name="runAcceptanceTests">
+        <target name="runAcceptanceTests" depends="compile-tests">
                 <junit printsummary="yes" fork="yes" haltonfailure="no">
                         <batchtest fork="yes"  todir="${test.reports}/acceptance" >
                                 <fileset dir="${test_bin_dir}" >
@@ -115,7 +129,7 @@
                 </delete>
         </target>
 
-	<target name="runAllTests">
+	<target name="runAllTests" depends="compile-tests">
 		<junit fork="yes" printsummary="yes" haltonfailure="no">
       			<batchtest fork="yes"  todir="${test.reports}/all" >
         			<fileset dir="${test_bin_dir}" >
