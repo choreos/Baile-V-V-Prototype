@@ -32,17 +32,18 @@
 
 
 	<target name="compile" description="Compile all java classes">
-		<mkdir dir="${bindir}" />
+		<delete>
+      			<fileset dir="${bindir}" includes="**/*.class" />
+    		</delete>
+
 		<javac destdir="${bindir}">
 		<src path="${srcdir}" />
 		<classpath>
-		<fileset dir="${libdir}">
+                <fileset dir="${libdir}">
                          <include name="**/*.jar"/>
+			 <exclude name="chore-ws.jar"/>
                 </fileset>
-
-		<pathelement path="${OK-kernel}" />
 		</classpath>
-
 	</javac>
 	</target>
 
