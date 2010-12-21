@@ -47,7 +47,7 @@ public class AirlinentegrationTest {
 		
 		assertEquals("R" + FLIGHT_ID + "-1|2000", actualContent);
 	}
-	/*
+	
 	@Test
 	public void shouldSendToTravelerTheCorrectETicket() {
 		travelerStub.orderTrip(DESTINATION, DATE, NAME, CREDIT_CARD_NUMBER);
@@ -56,7 +56,7 @@ public class AirlinentegrationTest {
 		String actualContent = queue.get("airline", "traveler", "responseEticket");
 		
 		assertEquals("e-ticket for flight " + FLIGHT_ID + "\n" + "passenger: " + NAME, actualContent);
-	}*/
+	}
 	
 
 }

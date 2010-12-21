@@ -40,7 +40,7 @@ public class TravelAgencyIntegrationTest {
 		
 		assertEquals(DESTINATION + "|" + DATE, actualContent);
 	}
-	/*
+	
 	@Test
 	public void shouldPassReserveInputDataToAirlineCorrectly(){
 		Flight flight = travelerStub.orderTrip(DESTINATION, DATE, NAME, CREDIT_CARD_NUMBER);
@@ -48,8 +48,7 @@ public class TravelAgencyIntegrationTest {
 		String actualContent = queue.get("travelAgency", "airline", "reserve");
 		
 		assertEquals(flight.getId() + "|" + TA_NAME, actualContent);
-	}*/
-	
+	}
 	
 	@Test
 	public void shouldContactAcquireAndTravelerWhenBookIsSuccess(){
