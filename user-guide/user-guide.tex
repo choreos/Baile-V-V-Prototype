@@ -148,6 +148,7 @@ In this section, we detailed the main steps to interact with the application.
   run\_all-tests & run all tests \\
   \hline
   \end{tabular}
+
   \end{table}
 
 \end{enumerate}
@@ -159,7 +160,7 @@ The script compiles every test class of the test folder before any test executio
 Any new test class need to be added in its test strategy folder (unit, integration, or acceptance). After the addition, the script will recognised the new class automatically. 
 
 \section{ Known Issues }
-Our choreography does not support interactions interruptions properly. So, if any test was forced interrupted, in some cases, the choreography must be restarted.
+Our choreography does not support interactions interruptions properly. So, if any test was forced interrupted, in some cases, the choreography must be restarted. There are some crash but rare communication errors. When these erros happened, the processes that compose the choreography must be killed. It can be done executing the script \textit{./script/stopChor.sh}. 
 
 \section{Acknowledgements}
 This research received funding from HP Brasil under the Baile Project.
