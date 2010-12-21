@@ -31,23 +31,28 @@
 	</path>
 
 
-	<target name="compile" description="Compile all java classes" >
-		<mkdir dir="${bindir}" />
+	<target name="compile" description="Compile all java classes">
+		<delete>
+      			<fileset dir="${bindir}" includes="**/*.class" />
+    		</delete>
+
 		<javac destdir="${bindir}">
 		<src path="${srcdir}" />
 		<classpath>
-		<pathelement path="${OK-kernel}" />
+                <fileset dir="${libdir}">
+                         <include name="**/*.jar"/>
+			 <exclude name="chore-ws.jar"/>
+                </fileset>
 		</classpath>
-
 	</javac>
 	</target>
 
-	<target name="jar"  description="Package classes into a .jar file">
+	<target name="jar"  description="Package classes into a .jar file" depends="compile">
 		<mkdir dir="${build}" />
 		<jar destfile="${jarname}" basedir="${bindir}" />
 	</target>
 
-  <target name="compile-tests">
+  <target name="compile-tests" depends="clean-compile-test">
     <javac srcdir="${tstdir}" destdir="${test_bin_dir}" includeAntRuntime="false">
       <classpath refid="test.classpath"/>
     </javac>

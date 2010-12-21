@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.9.2)  20 DEC 2010 16:42
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.9.2)  20 DEC 2010 17:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -241,30 +241,30 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 LaTeX Warning: Citation `tech-report' on page 2 undefined on input line 64.
 
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 71.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 67.
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 71.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 67.
  [2]
-<fig/welcome-screen.png, id=14, 554.07pt x 427.5975pt>
+<fig/welcome-screen.png, id=15, 554.07pt x 427.5975pt>
 File: fig/welcome-screen.png Graphic file (type png)
 
 <use fig/welcome-screen.png>
-LaTeX Font Info:    Try loading font information for OT1+ua1 on input line 113.
+LaTeX Font Info:    Try loading font information for OT1+ua1 on input line 122.
 
-LaTeX Font Info:    No file OT1ua1.fd. on input line 113.
+LaTeX Font Info:    No file OT1ua1.fd. on input line 122.
 
 
 LaTeX Font Warning: Font shape `OT1/ua1/m/n' undefined
-(Font)              using `OT1/cmr/m/n' instead on input line 113.
+(Font)              using `OT1/cmr/m/n' instead on input line 122.
 
 
 LaTeX Font Warning: Font shape `OT1/ua1/bx/n' undefined
-(Font)              using `OT1/ua1/m/n' instead on input line 113.
+(Font)              using `OT1/ua1/m/n' instead on input line 122.
 
-<fig/chore.png, id=16, 469.755pt x 380.42125pt>
+<fig/chore.png, id=17, 469.755pt x 380.42125pt>
 File: fig/chore.png Graphic file (type png)
  <use fig/chore.png> [3 <./fig/welcome-screen.png> <./fig/chore.png>] [4] (./us
 er-guide.bbl) [5]
@@ -277,11 +277,11 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 2513 strings out of 495041
- 36070 string characters out of 1181898
+ 2516 strings out of 495041
+ 36099 string characters out of 1181898
  92139 words of memory out of 3000000
- 5672 multiletter control sequences out of 15000+50000
- 19978 words of font info for 44 fonts, out of 3000000 for 9000
+ 5673 multiletter control sequences out of 15000+50000
+ 21662 words of font info for 46 fonts, out of 3000000 for 9000
  30 hyphenation exceptions out of 8191
  43i,8n,40p,252b,319s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-texli
@@ -290,10 +290,11 @@ ve/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-texlive/fonts/type
 onts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cms
 y8.pfb></usr/share/texmf-texlive/fonts/type1/urw/courier/ucrr8a.pfb></usr/share
 /texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts
-/type1/urw/times/utmr8a.pfb>
-Output written on user-guide.pdf (5 pages, 182908 bytes).
+/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utm
+ri8a.pfb>
+Output written on user-guide.pdf (5 pages, 190006 bytes).
 PDF statistics:
- 52 PDF objects out of 1000 (max. 8388607)
+ 56 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
