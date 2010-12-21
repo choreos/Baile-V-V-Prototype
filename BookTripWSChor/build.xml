@@ -36,6 +36,10 @@
 		<javac destdir="${bindir}">
 		<src path="${srcdir}" />
 		<classpath>
+		<fileset dir="${libdir}">
+                         <include name="**/*.jar"/>
+                </fileset>
+
 		<pathelement path="${OK-kernel}" />
 		</classpath>
 
