@@ -52,7 +52,7 @@
 		<jar destfile="${jarname}" basedir="${bindir}" />
 	</target>
 
-  <target name="compile-tests">
+  <target name="compile-tests" depends="clean-compile-test">
     <javac srcdir="${tstdir}" destdir="${test_bin_dir}" includeAntRuntime="false">
       <classpath refid="test.classpath"/>
     </javac>
