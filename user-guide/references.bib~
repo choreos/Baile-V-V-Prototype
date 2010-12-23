@@ -1,7 +1,7 @@
 @Misc{ java6,
 	author = "Oracle",
 	title = "{J}ava SE Downloads",
-	howpublished = "\\Available on:  \verb*|<http://www.oracle.com/technetwork/java/javase>|",
+	howpublished = "Available on: \\ \verb*|<http://www.oracle.com/technetwork/java/javase>|",
 	year = "2010"
 }
 
@@ -17,6 +17,15 @@
 	title = "Java library and command-line for automated building",
 	howpublished = "Available on: \verb*|<http://ant.apache.org/>|",
 	year = "2010"
+}
+
+@techreport { tech-report,
+	author = "Felipe M. Besson and Pedro M. B Leal and Fabio Kon",
+	title = "Towards Verification and Validation of Choreographies",
+	institution = "Institute of Mathematics and Statistics - University of Sao Paulo (USP)",
+	year = "2011",
+	number = "RT-MAC-2011-01", 
+	note = "Available on: \verb*|http://ccsl.ime.usp.br/baile/Downloads|"
 }
 
 

@@ -5,6 +5,13 @@
 \newblock Java library and command-line for automated building.
 \newblock Available on: \verb*|<http://ant.apache.org/>|, 2010.
 
+\bibitem{tech-report}
+F.~M. Besson, P.~M.~B. Leal, and F.~Kon.
+\newblock Towards verification and validation of choreographies.
+\newblock Technical Report RT-MAC-2011-01, Institute of Mathematics and
+  Statistics - University of Sao Paulo (USP), 2011.
+\newblock Available on: \verb*|<http://ccsl.ime.usp.br/baile/Downloads>|.
+
 \bibitem{java6}
 Oracle.
 \newblock {J}ava se downloads.

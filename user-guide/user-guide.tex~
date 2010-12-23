@@ -50,7 +50,7 @@
 \address{Department of Computer Science \\ Institute of Mathematics and Statistics\\
 University of S\~ao Paulo (USP) 
 \email{\{besson,pedrombl\}@ime.usp.br} }
-
+\usepackage[pdfpagelabels,hypertexnames=false,breaklinks=true,bookmarksopen=true,bookmarksopenlevel=2]{hyperref}
 
 \begin{document}	
 \maketitle			
@@ -82,7 +82,7 @@ The following software elements must be installed and working:
 \end{itemize}
 
 \section{ Where to download ? }
-The prototype can be download in: XXXXXXX. The source code of the web services used and the REST client can also be available on the CCSL repository: YYYYYYYYY. 
+The prototype can be download at the \href{http://ccsl.ime.usp.br/baile/files/prototype_v1.0.zip}{download section} of Baile page. The source code of the web services used and the REST client can also be available on the \href{https://github.com/pedrombl/Baile-V-V/}{Baile-V-V GitHub Repository}. 
 
 
 \section{ Software directory structure}
@@ -98,6 +98,7 @@ Our prototype are structure in the following files and directories (just the mos
   baile.sh & script to start the application \\
   src/ & source code \\
   test/ & test code \\
+  bin/ & binary files \\
   config/ & OpenKnowledge configuration files \\
   lcc/ & OpenKnowledge interaction model \\
   lib/ & third-party dependencies \\
@@ -133,11 +134,11 @@ In this section, we detailed the main steps to interact with the application.
   \label{chore}
   \end{figure}
 
-  \item Once all components of choreography (services, roles, OpenKnowledge entities) have been started successfully (as showed in Figure~\ref{chore}), the tests can be execute. The following commands are valid:
+  \item Once all components of choreography (services, roles and OpenKnowledge entities) have been started successfully (as showed in Figure~\ref{chore}), the tests can be executed. Test can be applied by using the following commands:
 
   \begin{table}[htb]
   \centering
-  \begin{tabular}{|l|l|}
+ \begin{tabular}{|l|l|}
   \hline
   Command & Description \\
   \hline
@@ -150,17 +151,27 @@ In this section, we detailed the main steps to interact with the application.
   \end{tabular}
 
   \end{table}
+\newpage
+  \item After test execution, some JUnit html reports containing the test results are automatically generated. These reports are saved in the test-reports directory. The Figure~\ref{test-reports} presented a html report generated after some unit tests execution.
+
+  \begin{figure}[htbp]
+  \centering
+  \setlength\fboxrule{1.0pt}
+  \scalebox{0.5}{\fbox{\includegraphics{fig/html-report}}}
+  \caption{HTML Report for unit test results }
+  \label{chore}
+  \end{figure}
 
 \end{enumerate}
 
 
 \section{ How to add more test cases ? }
-The script compiles every test class of the test folder before any test execution. So, modifications on a existing test class, will be compiled before the next command tests executed.
+The script compiles every test class of the test folder before any test execution. So, modifications on a existing test class, will be compiled before the next command test execution.
 
-Any new test class need to be added in its test strategy folder (unit, integration, or acceptance). After the addition, the script will recognised the new class automatically. 
+Any new test class needs to be added in its test folder (unit, integration, or acceptance). Once added, the script will recognised the new class automatically. 
 
 \section{ Known Issues }
-Our choreography does not support interactions interruptions properly. So, if any test was forced interrupted, in some cases, the choreography must be restarted. There are some crash but rare communication errors. When these erros happened the processes that compose the choreography must be killed. It can be done executing the script ./script/stopChor.sh. 
+Our choreography does not support interactions interruptions properly. So, if any test was forced interrupted, in some cases, the choreography must be restarted. There are some crash but rare communication errors. When these erros happened, the processes that compose the choreography must be killed. It can be done executing the script \textit{./script/stopChor.sh}. Please contact us about any new issue.
 
 \section{Acknowledgements}
 This research received funding from HP Brasil under the Baile Project.
