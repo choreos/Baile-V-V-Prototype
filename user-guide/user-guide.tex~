@@ -60,8 +60,8 @@ University of S\~ao Paulo (USP)
 \newpage
 \section { Overview }
 This software prototype is part of HP Baile Project\footnote{Baile Project: http://ccsl.ime.usp.br/baile/}, more specifically, 
-this prototype belongs to the research line ``Verification \& Validation of Choreographies''. More details about this research line and the
-basis of our software can be found in this technical report~\cite{tech-report}. Our prototype are composed by:
+this prototype belongs to the research line ``Verification \& Validation of Choreographies''. More details about this it and the
+basis of our software can be found in this technical report~\cite{tech-report}. Our prototype is composed by:
 
 \begin{itemize}
  \item a web service choreography developed on OpenKnowledge(OK)\footnote{OpenKnowledge: http://www.openk.org/};
@@ -82,11 +82,11 @@ The following software elements must be installed and working:
 \end{itemize}
 
 \section{ Where to download ? }
-The prototype can be download at the \href{http://ccsl.ime.usp.br/baile/files/prototype_v1.0.zip}{download section} of Baile page. The source code of the web services used and the REST client can also be available on the \href{https://github.com/pedrombl/Baile-V-V/}{Baile-V-V GitHub Repository}. 
+The prototype, web services used and the REST client can be downloaded at the \href{http://ccsl.ime.usp.br/baile/files}{download section} of Baile page (Research line: Verification and Validation of Choreographies). The source code of these softwares are also be available on the \href{https://github.com/pedrombl/Baile-V-V/}{Baile-V-V GitHub Repository}. 
 
 
 \section{ Software directory structure}
-Our prototype are structure in the following files and directories (just the most important are described bellow):
+Our prototype is structure in the following files and directories (just the most important are described bellow):
 
  \begin{table}[htb]
   \centering
@@ -134,7 +134,7 @@ In this section, we detailed the main steps to interact with the application.
   \label{chore}
   \end{figure}
 
-  \item Once all components of choreography (services, roles and OpenKnowledge entities) have been started successfully (as showed in Figure~\ref{chore}), the tests can be executed. Test can be applied by using the following commands:
+  \item Once all components of choreography (services, roles, and OpenKnowledge entities) have been started successfully (as showed in Figure~\ref{chore}), the tests can be executed. Test can be applied by using the following commands:
 
   \begin{table}[htb]
   \centering
@@ -152,14 +152,14 @@ In this section, we detailed the main steps to interact with the application.
 
   \end{table}
 \newpage
-  \item After test execution, some JUnit html reports containing the test results are automatically generated. These reports are saved in the test-reports directory. The Figure~\ref{test-reports} presented a html report generated after some unit tests execution.
+  \item After test execution, some JUnit html reports containing the test results are automatically generated. These reports are saved in the test-reports directory. The Figure~\ref{test-report} presented a html report generated after some unit tests execution.
 
   \begin{figure}[htbp]
   \centering
   \setlength\fboxrule{1.0pt}
   \scalebox{0.5}{\fbox{\includegraphics{fig/html-report}}}
   \caption{HTML Report for unit test results }
-  \label{chore}
+  \label{test-report}
   \end{figure}
 
 \end{enumerate}
