@@ -8,8 +8,12 @@ a(traveler, ID1) ::
 	(
      orderTrip(Destination, Date, Name, CcNumber) => a(travelAgency, ID2) <- userInitiatesOrderTrip(Destination, Date, Name, CcNumber)
      then
-       response(FlightStatus, FlightID, FlightPrice, AirlineName) <= a(travelAgency, ID2) <- flights(FlightStatus, FlightID, FlightPrice, AirlineName)
-       then
+     	a(traveler, ID1)
+     )
+     or
+     (
+     flights(FlightStatus, FlightID, FlightPrice, AirlineName) <= a(travelAgency, ID2) <- flights(FlightStatus, FlightID, FlightPrice, AirlineName)
+     then
          a(traveler, ID1)
     )
     or
@@ -43,13 +47,17 @@ a(travelAgency, ID2) ::
 	(
     orderTrip(Destination, Date, Name, CcNumber) <= a(traveler, ID1) <- registerUser(Name, CcNumber)
     then
-      search(Destination, Date) => a(airline, ID3)
-      then
-        response(FlightStatus, FlightID, FlightPrice, AirlineName) <= a(airline, ID3) <- searchResult(FlightStatus, FlightID, FlightPrice, AirlineName)
+    	search(Destination, Date) => a(airline, ID3)
+    	then
+    		a(travelAgency, ID2)
+    )
+    or
+    (
+    response(FlightStatus, FlightID, FlightPrice, AirlineName) <= a(airline, ID3) <- searchResult(FlightStatus, FlightID, FlightPrice, AirlineName)
+	then
+		flights(FlightStatus, FlightID, FlightPrice, AirlineName) => a(traveler, ID1) <- buildResponse(FlightStatus, FlightID, FlightPrice, AirlineName)
 		then
-	  	  response(FlightStatus, FlightID, FlightPrice, AirlineName) => a(traveler, ID1)
-	 	  then
-	    	a(travelAgency, ID2)
+			a(travelAgency, ID2)
 	)
     or
     (
@@ -105,7 +113,7 @@ a(travelAgency, ID2) ::
 a(airline, ID3) ::
 	(
     search(Destination, Date) <= a(travelAgency, ID2) <- createResponse(Destination, Date, FlightStatus, FlightID, FlightPrice, AirlineName)
-    then
+    then	
       response(FlightStatus, FlightID, FlightPrice, AirlineName) => a(travelAgency, ID2)
       then
         a(airline, ID3)

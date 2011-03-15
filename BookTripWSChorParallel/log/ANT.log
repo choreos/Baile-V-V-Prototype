@@ -1,0 +1,11 @@
+Buildfile: /media/stuff/Baile/Baile-V-V_2010/BookTripWSChor/build.xml
+
+compile:
+    [javac] /media/stuff/Baile/Baile-V-V_2010/BookTripWSChor/build.xml:39: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
+    [javac] Compiling 12 source files to /media/stuff/Baile/Baile-V-V_2010/BookTripWSChor/bin
+
+jar:
+      [jar] Building jar: /media/stuff/Baile/Baile-V-V_2010/BookTripWSChor/build/BookTrip.jar
+
+BUILD SUCCESSFUL
+Total time: 1 second

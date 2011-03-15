@@ -1,0 +1,199 @@
+<ERROR 17:08:34,037 PropertiesConfigurationManager::init> tg=<main> Could not read configuration file [/home/besson/OpenKnowledge/config/ok.user.properties].>
+<WARN  17:08:34,060 PropertiesConfigurationManager::getModule> tg=<main> Getting module 'user-interface': class 'true' not found>
+<ERROR 17:08:34,070 PropertiesConfigurationManager::init> tg=<main> Could not read configuration file [/home/besson/OpenKnowledge/config/ok.user.properties].>
+Using SPSMather
+<DEBUG 17:08:34,180 MatchManager::getInputStream> tg=<main> Trying to load config/SMatch.properties from [file]>
+<DEBUG 17:08:34,198 MatchManager::getInputStream> tg=<main> Trying to load /WordNet/adj_syn.arr from [jar]>
+<DEBUG 17:08:34,203 MatchManager::getInputStream> tg=<main> Trying to load /WordNet/adj_opp.arr from [jar]>
+<DEBUG 17:08:34,206 MatchManager::getInputStream> tg=<main> Trying to load /WordNet/noun3_mg.arr from [jar]>
+<DEBUG 17:08:34,252 MatchManager::getInputStream> tg=<main> Trying to load /WordNet/noun_opp_new.arr from [jar]>
+<DEBUG 17:08:34,269 MatchManager::getInputStream> tg=<main> Trying to load /WordNet/adv_opp.arr from [jar]>
+<DEBUG 17:08:34,271 MatchManager::getInputStream> tg=<main> Trying to load /WordNet/verb_mg.arr from [jar]>
+<DEBUG 17:08:34,275 MatchManager::getInputStream> tg=<main> Trying to load /WordNet/nominalizations.arr from [jar]>
+<DEBUG 17:08:34,278 MatchManager::createComponents> tg=<main> USING WNMatcher edu.unitn.dit.smatch.oracles.wordnet.InMemoryWordNetBinaryArray>
+<DEBUG 17:08:34,281 MatchManager::getInputStream> tg=<main> Trying to load /WordNet/lemmas.arr from [jar]>
+<DEBUG 17:08:34,484 MatchManager::getInputStream> tg=<main> Trying to load /WordNet/lemma_synsets.arr from [jar]>
+<DEBUG 17:08:34,625 MatchManager::getInputStream> tg=<main> Trying to load /WordNet/synset_lemmas.arr from [jar]>
+<DEBUG 17:08:34,695 MatchManager::getInputStream> tg=<main> Trying to load /WordNet/synset_pos.arr from [jar]>
+<DEBUG 17:08:34,846 MatchManager::getInputStream> tg=<main> Trying to load /WordNet/noun_exc.hash from [jar]>
+<DEBUG 17:08:34,852 MatchManager::getInputStream> tg=<main> Trying to load /WordNet/verb_exc.hash from [jar]>
+<DEBUG 17:08:34,857 MatchManager::getInputStream> tg=<main> Trying to load /WordNet/adj_exc.hash from [jar]>
+<DEBUG 17:08:34,861 MatchManager::getInputStream> tg=<main> Trying to load /WordNet/adv_exc.hash from [jar]>
+r(traveler, initial)
+r(travelAgency, necessary, 1)
+r(airline, necessary, 1)
+r(acquirer, necessary, 1)
+
+
+a(traveler, ID1) ::
+	(
+     orderTrip(Destination, Date, Name, CcNumber) => a(travelAgency, ID2) <- userInitiatesOrderTrip(Destination, Date, Name, CcNumber)
+     then
+     	a(traveler, ID1)
+     )
+     or
+     (
+     flights(FlightStatus, FlightID, FlightPrice, AirlineName) <= a(travelAgency, ID2) <- flights(FlightStatus, FlightID, FlightPrice, AirlineName)
+     then
+         a(traveler, ID1)
+    )
+    or
+    (
+     reserveTicket(FlightID) => a(travelAgency, ID2) <- userMakesAReservation(FlightID)
+     then
+       response(Reserve) <= a(travelAgency, ID2) <-reserve(Reserve)
+       then
+         a(traveler, ID1)
+     )     
+     or
+     (      
+	  bookTicket(Reserve) => a(travelAgency, ID2) <- userMakesABook(Reserve)
+      then
+  	    responseTA(Statement) <= a(travelAgency, ID2) <- statement(Statement)
+        then
+	      responseAL(Eticket) <= a(airline, ID3) <- eTicket(Eticket)
+	      then
+            a(traveler, ID1)
+	 )
+	 or
+	 (
+	 cancelReserve(Reserve) => a(travelAgency, ID2) <- userMakesACancellation(Reserve)
+	 then 
+	   response(Confirmation) <= a(travelAgency, ID2) <- cancellation(Confirmation)
+	   then
+	     a(traveler, ID1)
+     )   
+
+a(travelAgency, ID2) ::
+	(
+    orderTrip(Destination, Date, Name, CcNumber) <= a(traveler, ID1) <- registerUser(Name, CcNumber)
+    then
+    	search(Destination, Date) => a(airline, ID3)
+    	then
+    		a(travelAgency, ID2)
+    )
+    or
+    (
+    response(FlightStatus, FlightID, FlightPrice, AirlineName) <= a(airline, ID3) <- searchResult(FlightStatus, FlightID, FlightPrice, AirlineName)
+	then
+		flights(FlightStatus, FlightID, FlightPrice, AirlineName) => a(traveler, ID1) <- buildResponse(FlightStatus, FlightID, FlightPrice, AirlineName)
+		then
+			a(travelAgency, ID2)
+	)
+    or
+    (
+    reserveTicket(FlightID) <= a(traveler, ID1) <- travelAgencyMakesAReservation(FlightID, TravelAgencyID)
+    then
+      reserve(FlightID, TravelAgencyID) => a(airline, ID3)
+      then       
+        response(ReserveCost) <= a(airline, ID3) <- travelAgencyRegisterReservation(ReserveCost, Reserve)
+        then
+ 	  	  response(Reserve) => a(traveler,IDI) 
+	  		then         
+            a(travelAgency, ID2)
+    )
+    or
+    (
+    cancelReserve(Reserve) <= a(traveler, ID1) <- confirmCancellation(Reserve)
+    then
+      cancel(Reserve) => a(airline, ID3)
+      then
+	  response(Confirmation) <= a(airline, ID3)
+	    then
+          response(Confirmation) => a(traveler, ID1)
+          then
+            a(travelAgency, ID2)
+    )
+    or
+    (
+    bookTicket(Reserve) <= a(traveler, ID1) <- catchUserData(Reserve, Name, CcNumber, TotalPrice)
+    then
+      check(Reserve, Name, CcNumber, TotalPrice) => a(acquirer, ID4)
+      then
+        a(travelAgency, ID2)
+    )
+    or
+    (
+     approval(Status, TravelAgencyPayment) <= a(acquirer, ID4) <-registerPayment(Status, TravelAgencyPayment)
+      	then
+      	  confirmation(Reserve, Name, AirlinePayment) <= a(airline, ID3) <- emitStatement(Reserve, Name, AirlinePayment, Statement)
+		    then
+            responseTA(Statement) => a(traveler, ID1)
+            then
+              a(travelAgency, ID2)
+    )
+    or
+    (
+    notificationTA(Status) <= a(acquirer, ID4)  <- emitNotificationTA(Status, Statement)
+    then
+      responseTA(Statement) => a(traveler, ID1)
+            then
+              a(travelAgency, ID2)
+    )
+    
+a(airline, ID3) ::
+	(
+    search(Destination, Date) <= a(travelAgency, ID2) <- createResponse(Destination, Date, FlightStatus, FlightID, FlightPrice, AirlineName)
+    then	
+      response(FlightStatus, FlightID, FlightPrice, AirlineName) => a(travelAgency, ID2)
+      then
+        a(airline, ID3)
+    )
+    or
+    (
+    reserve(FlightID, TravelAgencyID) <= a(travelAgency, ID2) <- createReserve(FlightID, TravelAgencyID, ReserveCost)
+    then
+      response(ReserveCost) => a(travelAgency, ID2)
+      then
+        a(airline, ID3)
+    )
+    or
+    (
+    payment(AirlinePayment, Reserve, Name, CcNumber) <= a(acquirer, ID4) 
+    then
+     confirmation(Reserve, Name, AirlinePayment) => a(travelAgency, ID2) <- createEticket(AirlinePayment, Reserve, Name, CcNumber, Eticket)
+      then
+        responseAL(Eticket) => a(traveler, ID1)
+        then
+          a(airline, ID3) 
+    )
+    or
+    (
+     notificationAL(Status) <= a(acquirer, ID4) <- emitNotificationAL(Status, Eticket)
+     then
+       responseAL(Eticket) => a(traveler, ID1)
+            then
+              a(airline, ID3)
+    )
+    or
+    (
+    cancel(Reserve) <= a(travelAgency, ID2) <- cancelReserve(Reserve, Confirmation)
+    then
+      response(Confirmation) => a(travelAgency, ID2)
+      then
+        a(airline, ID3) 
+     )
+     
+a(acquirer, ID4) ::
+	(
+     check(Reserve, Name, CcNumber, TotalPrice) <= a(travelAgency, ID2) 
+	     then
+	     (
+	     approval(Status, TravelAgencyPayment) => a(travelAgency, ID2) <- countPayments(Reserve, Name, CcNumber, TotalPrice, Status, TravelAgencyPayment, AirlinePayment)
+	     then
+	       payment(AirlinePayment, Reserve, Name, CcNumber) => a(airline, ID3)
+	   	   then
+	   	     a(acquirer, ID4)
+		)
+		or
+    	(
+	     notificationTA(Status) => a(travelAgency, ID2) <- verifyStatus(Status)
+	     then
+	   	   notificationAL(Status) => a(airline, ID3) 
+	   	     then 
+	  	       a(acquirer, ID4)
+		)
+	)	
+	
+
+publish reply received 

@@ -1,0 +1,227 @@
+<ERROR 17:08:56,042 PropertiesConfigurationManager::init> tg=<main> Could not read configuration file [/home/besson/OpenKnowledge/config/ok.user.properties].>
+<WARN  17:08:56,067 PropertiesConfigurationManager::getModule> tg=<main> Getting module 'user-interface': class 'true' not found>
+<ERROR 17:08:56,078 PropertiesConfigurationManager::init> tg=<main> Could not read configuration file [/home/besson/OpenKnowledge/config/ok.user.properties].>
+Using SPSMather
+<DEBUG 17:08:56,188 MatchManager::getInputStream> tg=<main> Trying to load config/SMatch.properties from [file]>
+<DEBUG 17:08:56,205 MatchManager::getInputStream> tg=<main> Trying to load /WordNet/adj_syn.arr from [jar]>
+<DEBUG 17:08:56,210 MatchManager::getInputStream> tg=<main> Trying to load /WordNet/adj_opp.arr from [jar]>
+<DEBUG 17:08:56,213 MatchManager::getInputStream> tg=<main> Trying to load /WordNet/noun3_mg.arr from [jar]>
+<DEBUG 17:08:56,260 MatchManager::getInputStream> tg=<main> Trying to load /WordNet/noun_opp_new.arr from [jar]>
+<DEBUG 17:08:56,276 MatchManager::getInputStream> tg=<main> Trying to load /WordNet/adv_opp.arr from [jar]>
+<DEBUG 17:08:56,278 MatchManager::getInputStream> tg=<main> Trying to load /WordNet/verb_mg.arr from [jar]>
+<DEBUG 17:08:56,282 MatchManager::getInputStream> tg=<main> Trying to load /WordNet/nominalizations.arr from [jar]>
+<DEBUG 17:08:56,285 MatchManager::createComponents> tg=<main> USING WNMatcher edu.unitn.dit.smatch.oracles.wordnet.InMemoryWordNetBinaryArray>
+<DEBUG 17:08:56,288 MatchManager::getInputStream> tg=<main> Trying to load /WordNet/lemmas.arr from [jar]>
+<DEBUG 17:08:56,496 MatchManager::getInputStream> tg=<main> Trying to load /WordNet/lemma_synsets.arr from [jar]>
+<DEBUG 17:08:56,653 MatchManager::getInputStream> tg=<main> Trying to load /WordNet/synset_lemmas.arr from [jar]>
+<DEBUG 17:08:56,725 MatchManager::getInputStream> tg=<main> Trying to load /WordNet/synset_pos.arr from [jar]>
+<DEBUG 17:08:56,823 MatchManager::getInputStream> tg=<main> Trying to load /WordNet/noun_exc.hash from [jar]>
+<DEBUG 17:08:56,829 MatchManager::getInputStream> tg=<main> Trying to load /WordNet/verb_exc.hash from [jar]>
+<DEBUG 17:08:56,835 MatchManager::getInputStream> tg=<main> Trying to load /WordNet/adj_exc.hash from [jar]>
+<DEBUG 17:08:56,838 MatchManager::getInputStream> tg=<main> Trying to load /WordNet/adv_exc.hash from [jar]>
+<INFO  17:08:56,907 IMQueryCallBack::handleNewIms> tg=<pool-3-thread-3> handleNewIms called 1>
+<INFO  17:08:56,907 IMQueryCallBack::handleNewIms> tg=<pool-3-thread-2> handleNewIms called 1>
+<INFO  17:08:56,908 InteractionTask::processReceivedInteraction> tg=<pool-3-thread-3> Will process IM 528f5c7c7185c98b9a6ec5c3d6f58de8>
+<INFO  17:08:56,959 SimpleNode::dump> tg=<pool-3-thread-3> parse>
+<INFO  17:08:56,959 SimpleNode::dump> tg=<pool-3-thread-3>  roleDefinition>
+<INFO  17:08:56,959 SimpleNode::dump> tg=<pool-3-thread-3>  roleDefinition>
+<INFO  17:08:56,959 SimpleNode::dump> tg=<pool-3-thread-3>  roleDefinition>
+<INFO  17:08:56,960 SimpleNode::dump> tg=<pool-3-thread-3>  roleDefinition>
+<INFO  17:08:56,960 SimpleNode::dump> tg=<pool-3-thread-3>  clause a(traveler[],unset)>
+<INFO  17:08:56,960 SimpleNode::dump> tg=<pool-3-thread-3>   OR>
+<INFO  17:08:56,960 SimpleNode::dump> tg=<pool-3-thread-3>    OR>
+<INFO  17:08:56,961 SimpleNode::dump> tg=<pool-3-thread-3>     OR>
+<INFO  17:08:56,961 SimpleNode::dump> tg=<pool-3-thread-3>      OR>
+<INFO  17:08:56,961 SimpleNode::dump> tg=<pool-3-thread-3>       THEN>
+<INFO  17:08:56,961 SimpleNode::dump> tg=<pool-3-thread-3>        messageOut orderTrip[Destination=unset, Date=unset, Name=unset, CcNumber=unset] => a(travelAgency[],unset)>
+<INFO  17:08:56,962 SimpleNode::dump> tg=<pool-3-thread-3>         constraint userInitiatesOrderTrip[Destination=unset, Date=unset, Name=unset, CcNumber=unset]>
+<INFO  17:08:56,962 SimpleNode::dump> tg=<pool-3-thread-3>        newRole a(traveler[],unset)>
+<INFO  17:08:56,962 SimpleNode::dump> tg=<pool-3-thread-3>       THEN>
+<INFO  17:08:56,962 SimpleNode::dump> tg=<pool-3-thread-3>        messageIn flights[FlightStatus=unset, FlightID=unset, FlightPrice=unset, AirlineName=unset] => a(travelAgency[],unset)>
+<INFO  17:08:56,963 SimpleNode::dump> tg=<pool-3-thread-3>         constraint flights[FlightStatus=unset, FlightID=unset, FlightPrice=unset, AirlineName=unset]>
+<INFO  17:08:56,963 SimpleNode::dump> tg=<pool-3-thread-3>        newRole a(traveler[],unset)>
+<INFO  17:08:56,963 SimpleNode::dump> tg=<pool-3-thread-3>      THEN>
+<INFO  17:08:56,963 SimpleNode::dump> tg=<pool-3-thread-3>       messageOut reserveTicket[FlightID=unset] => a(travelAgency[],unset)>
+<INFO  17:08:56,964 SimpleNode::dump> tg=<pool-3-thread-3>        constraint userMakesAReservation[FlightID=unset]>
+<INFO  17:08:56,964 SimpleNode::dump> tg=<pool-3-thread-3>       THEN>
+<INFO  17:08:56,964 SimpleNode::dump> tg=<pool-3-thread-3>        messageIn response[Reserve=unset] => a(travelAgency[],unset)>
+<INFO  17:08:56,965 SimpleNode::dump> tg=<pool-3-thread-3>         constraint reserve[Reserve=unset]>
+<INFO  17:08:56,965 SimpleNode::dump> tg=<pool-3-thread-3>        newRole a(traveler[],unset)>
+<INFO  17:08:56,965 SimpleNode::dump> tg=<pool-3-thread-3>     THEN>
+<INFO  17:08:56,965 SimpleNode::dump> tg=<pool-3-thread-3>      messageOut bookTicket[Reserve=unset] => a(travelAgency[],unset)>
+<INFO  17:08:56,966 SimpleNode::dump> tg=<pool-3-thread-3>       constraint userMakesABook[Reserve=unset]>
+<INFO  17:08:56,966 SimpleNode::dump> tg=<pool-3-thread-3>      THEN>
+<INFO  17:08:56,966 SimpleNode::dump> tg=<pool-3-thread-3>       messageIn responseTA[Statement=unset] => a(travelAgency[],unset)>
+<INFO  17:08:56,966 SimpleNode::dump> tg=<pool-3-thread-3>        constraint statement[Statement=unset]>
+<INFO  17:08:56,967 SimpleNode::dump> tg=<pool-3-thread-3>       THEN>
+<INFO  17:08:56,967 SimpleNode::dump> tg=<pool-3-thread-3>        messageIn responseAL[Eticket=unset] => a(airline[],unset)>
+<INFO  17:08:56,967 SimpleNode::dump> tg=<pool-3-thread-3>         constraint eTicket[Eticket=unset]>
+<INFO  17:08:56,967 SimpleNode::dump> tg=<pool-3-thread-3>        newRole a(traveler[],unset)>
+<INFO  17:08:56,968 SimpleNode::dump> tg=<pool-3-thread-3>    THEN>
+<INFO  17:08:56,968 SimpleNode::dump> tg=<pool-3-thread-3>     messageOut cancelReserve[Reserve=unset] => a(travelAgency[],unset)>
+<INFO  17:08:56,968 SimpleNode::dump> tg=<pool-3-thread-3>      constraint userMakesACancellation[Reserve=unset]>
+<INFO  17:08:56,968 SimpleNode::dump> tg=<pool-3-thread-3>     THEN>
+<INFO  17:08:56,969 SimpleNode::dump> tg=<pool-3-thread-3>      messageIn response[Confirmation=unset] => a(travelAgency[],unset)>
+<INFO  17:08:56,969 SimpleNode::dump> tg=<pool-3-thread-3>       constraint cancellation[Confirmation=unset]>
+<INFO  17:08:56,969 SimpleNode::dump> tg=<pool-3-thread-3>      newRole a(traveler[],unset)>
+<INFO  17:08:56,969 SimpleNode::dump> tg=<pool-3-thread-3>  clause a(travelAgency[],unset)>
+<INFO  17:08:56,970 SimpleNode::dump> tg=<pool-3-thread-3>   OR>
+<INFO  17:08:56,970 SimpleNode::dump> tg=<pool-3-thread-3>    OR>
+<INFO  17:08:56,970 SimpleNode::dump> tg=<pool-3-thread-3>     OR>
+<INFO  17:08:56,970 SimpleNode::dump> tg=<pool-3-thread-3>      OR>
+<INFO  17:08:56,971 SimpleNode::dump> tg=<pool-3-thread-3>       OR>
+<INFO  17:08:56,971 SimpleNode::dump> tg=<pool-3-thread-3>        OR>
+<INFO  17:08:56,971 SimpleNode::dump> tg=<pool-3-thread-3>         THEN>
+<INFO  17:08:56,971 SimpleNode::dump> tg=<pool-3-thread-3>          messageIn orderTrip[Destination=unset, Date=unset, Name=unset, CcNumber=unset] => a(traveler[],unset)>
+<INFO  17:08:56,972 SimpleNode::dump> tg=<pool-3-thread-3>           constraint registerUser[Name=unset, CcNumber=unset]>
+<INFO  17:08:56,972 SimpleNode::dump> tg=<pool-3-thread-3>          THEN>
+<INFO  17:08:56,972 SimpleNode::dump> tg=<pool-3-thread-3>           messageOut search[Destination=unset, Date=unset] => a(airline[],unset)>
+<INFO  17:08:56,972 SimpleNode::dump> tg=<pool-3-thread-3>           newRole a(travelAgency[],unset)>
+<INFO  17:08:56,973 SimpleNode::dump> tg=<pool-3-thread-3>         THEN>
+<INFO  17:08:56,973 SimpleNode::dump> tg=<pool-3-thread-3>          messageIn response[FlightStatus=unset, FlightID=unset, FlightPrice=unset, AirlineName=unset] => a(airline[],unset)>
+<INFO  17:08:56,973 SimpleNode::dump> tg=<pool-3-thread-3>           constraint searchResult[FlightStatus=unset, FlightID=unset, FlightPrice=unset, AirlineName=unset]>
+<INFO  17:08:56,974 SimpleNode::dump> tg=<pool-3-thread-3>          THEN>
+<INFO  17:08:56,974 SimpleNode::dump> tg=<pool-3-thread-3>           messageOut flights[FlightStatus=unset, FlightID=unset, FlightPrice=unset, AirlineName=unset] => a(traveler[],unset)>
+<INFO  17:08:56,974 SimpleNode::dump> tg=<pool-3-thread-3>            constraint buildResponse[FlightStatus=unset, FlightID=unset, FlightPrice=unset, AirlineName=unset]>
+<INFO  17:08:56,974 SimpleNode::dump> tg=<pool-3-thread-3>           newRole a(travelAgency[],unset)>
+<INFO  17:08:56,975 SimpleNode::dump> tg=<pool-3-thread-3>        THEN>
+<INFO  17:08:56,976 SimpleNode::dump> tg=<pool-3-thread-3>         messageIn reserveTicket[FlightID=unset] => a(traveler[],unset)>
+<INFO  17:08:56,976 SimpleNode::dump> tg=<pool-3-thread-3>          constraint travelAgencyMakesAReservation[FlightID=unset, TravelAgencyID=unset]>
+<INFO  17:08:56,977 SimpleNode::dump> tg=<pool-3-thread-3>         THEN>
+<INFO  17:08:56,977 SimpleNode::dump> tg=<pool-3-thread-3>          messageOut reserve[FlightID=unset, TravelAgencyID=unset] => a(airline[],unset)>
+<INFO  17:08:56,977 SimpleNode::dump> tg=<pool-3-thread-3>          THEN>
+<INFO  17:08:56,977 SimpleNode::dump> tg=<pool-3-thread-3>           messageIn response[ReserveCost=unset] => a(airline[],unset)>
+<INFO  17:08:56,978 SimpleNode::dump> tg=<pool-3-thread-3>            constraint travelAgencyRegisterReservation[ReserveCost=unset, Reserve=unset]>
+<INFO  17:08:56,978 SimpleNode::dump> tg=<pool-3-thread-3>           THEN>
+<INFO  17:08:56,978 SimpleNode::dump> tg=<pool-3-thread-3>            messageOut response[Reserve=unset] => a(traveler[],unset)>
+<INFO  17:08:56,978 SimpleNode::dump> tg=<pool-3-thread-3>            newRole a(travelAgency[],unset)>
+<INFO  17:08:56,979 SimpleNode::dump> tg=<pool-3-thread-3>       THEN>
+<INFO  17:08:56,979 SimpleNode::dump> tg=<pool-3-thread-3>        messageIn cancelReserve[Reserve=unset] => a(traveler[],unset)>
+<INFO  17:08:56,979 SimpleNode::dump> tg=<pool-3-thread-3>         constraint confirmCancellation[Reserve=unset]>
+<INFO  17:08:56,980 SimpleNode::dump> tg=<pool-3-thread-3>        THEN>
+<INFO  17:08:56,980 SimpleNode::dump> tg=<pool-3-thread-3>         messageOut cancel[Reserve=unset] => a(airline[],unset)>
+<INFO  17:08:56,980 SimpleNode::dump> tg=<pool-3-thread-3>         THEN>
+<INFO  17:08:56,981 SimpleNode::dump> tg=<pool-3-thread-3>          messageIn response[Confirmation=unset] => a(airline[],unset)>
+<INFO  17:08:56,981 SimpleNode::dump> tg=<pool-3-thread-3>          THEN>
+<INFO  17:08:56,981 SimpleNode::dump> tg=<pool-3-thread-3>           messageOut response[Confirmation=unset] => a(traveler[],unset)>
+<INFO  17:08:56,981 SimpleNode::dump> tg=<pool-3-thread-3>           newRole a(travelAgency[],unset)>
+<INFO  17:08:56,982 SimpleNode::dump> tg=<pool-3-thread-3>      THEN>
+<INFO  17:08:56,982 SimpleNode::dump> tg=<pool-3-thread-3>       messageIn bookTicket[Reserve=unset] => a(traveler[],unset)>
+<INFO  17:08:56,982 SimpleNode::dump> tg=<pool-3-thread-3>        constraint catchUserData[Reserve=unset, Name=unset, CcNumber=unset, TotalPrice=unset]>
+<INFO  17:08:56,982 SimpleNode::dump> tg=<pool-3-thread-3>       THEN>
+<INFO  17:08:56,983 SimpleNode::dump> tg=<pool-3-thread-3>        messageOut check[Reserve=unset, Name=unset, CcNumber=unset, TotalPrice=unset] => a(acquirer[],unset)>
+<INFO  17:08:56,983 SimpleNode::dump> tg=<pool-3-thread-3>        newRole a(travelAgency[],unset)>
+<INFO  17:08:56,983 SimpleNode::dump> tg=<pool-3-thread-3>     THEN>
+<INFO  17:08:56,983 SimpleNode::dump> tg=<pool-3-thread-3>      messageIn approval[Status=unset, TravelAgencyPayment=unset] => a(acquirer[],unset)>
+<INFO  17:08:56,984 SimpleNode::dump> tg=<pool-3-thread-3>       constraint registerPayment[Status=unset, TravelAgencyPayment=unset]>
+<INFO  17:08:56,984 SimpleNode::dump> tg=<pool-3-thread-3>      THEN>
+<INFO  17:08:56,984 SimpleNode::dump> tg=<pool-3-thread-3>       messageIn confirmation[Reserve=unset, Name=unset, AirlinePayment=unset] => a(airline[],unset)>
+<INFO  17:08:56,984 SimpleNode::dump> tg=<pool-3-thread-3>        constraint emitStatement[Reserve=unset, Name=unset, AirlinePayment=unset, Statement=unset]>
+<INFO  17:08:56,985 SimpleNode::dump> tg=<pool-3-thread-3>       THEN>
+<INFO  17:08:56,985 SimpleNode::dump> tg=<pool-3-thread-3>        messageOut responseTA[Statement=unset] => a(traveler[],unset)>
+<INFO  17:08:56,985 SimpleNode::dump> tg=<pool-3-thread-3>        newRole a(travelAgency[],unset)>
+<INFO  17:08:56,985 SimpleNode::dump> tg=<pool-3-thread-3>    THEN>
+<INFO  17:08:56,986 SimpleNode::dump> tg=<pool-3-thread-3>     messageIn notificationTA[Status=unset] => a(acquirer[],unset)>
+<INFO  17:08:56,986 SimpleNode::dump> tg=<pool-3-thread-3>      constraint emitNotificationTA[Status=unset, Statement=unset]>
+<INFO  17:08:56,986 SimpleNode::dump> tg=<pool-3-thread-3>     THEN>
+<INFO  17:08:56,986 SimpleNode::dump> tg=<pool-3-thread-3>      messageOut responseTA[Statement=unset] => a(traveler[],unset)>
+<INFO  17:08:56,987 SimpleNode::dump> tg=<pool-3-thread-3>      newRole a(travelAgency[],unset)>
+<INFO  17:08:56,987 SimpleNode::dump> tg=<pool-3-thread-3>  clause a(airline[],unset)>
+<INFO  17:08:56,987 SimpleNode::dump> tg=<pool-3-thread-3>   OR>
+<INFO  17:08:56,987 SimpleNode::dump> tg=<pool-3-thread-3>    OR>
+<INFO  17:08:56,988 SimpleNode::dump> tg=<pool-3-thread-3>     OR>
+<INFO  17:08:56,988 SimpleNode::dump> tg=<pool-3-thread-3>      OR>
+<INFO  17:08:56,988 SimpleNode::dump> tg=<pool-3-thread-3>       THEN>
+<INFO  17:08:56,988 SimpleNode::dump> tg=<pool-3-thread-3>        messageIn search[Destination=unset, Date=unset] => a(travelAgency[],unset)>
+<INFO  17:08:56,988 SimpleNode::dump> tg=<pool-3-thread-3>         constraint createResponse[Destination=unset, Date=unset, FlightStatus=unset, FlightID=unset, FlightPrice=unset, AirlineName=unset]>
+<INFO  17:08:56,989 SimpleNode::dump> tg=<pool-3-thread-3>        THEN>
+<INFO  17:08:56,989 SimpleNode::dump> tg=<pool-3-thread-3>         messageOut response[FlightStatus=unset, FlightID=unset, FlightPrice=unset, AirlineName=unset] => a(travelAgency[],unset)>
+<INFO  17:08:56,990 SimpleNode::dump> tg=<pool-3-thread-3>         newRole a(airline[],unset)>
+<INFO  17:08:56,990 SimpleNode::dump> tg=<pool-3-thread-3>       THEN>
+<INFO  17:08:56,990 SimpleNode::dump> tg=<pool-3-thread-3>        messageIn reserve[FlightID=unset, TravelAgencyID=unset] => a(travelAgency[],unset)>
+<INFO  17:08:56,990 SimpleNode::dump> tg=<pool-3-thread-3>         constraint createReserve[FlightID=unset, TravelAgencyID=unset, ReserveCost=unset]>
+<INFO  17:08:56,991 SimpleNode::dump> tg=<pool-3-thread-3>        THEN>
+<INFO  17:08:56,991 SimpleNode::dump> tg=<pool-3-thread-3>         messageOut response[ReserveCost=unset] => a(travelAgency[],unset)>
+<INFO  17:08:56,991 SimpleNode::dump> tg=<pool-3-thread-3>         newRole a(airline[],unset)>
+<INFO  17:08:56,991 SimpleNode::dump> tg=<pool-3-thread-3>      THEN>
+<INFO  17:08:56,992 SimpleNode::dump> tg=<pool-3-thread-3>       messageIn payment[AirlinePayment=unset, Reserve=unset, Name=unset, CcNumber=unset] => a(acquirer[],unset)>
+<INFO  17:08:56,992 SimpleNode::dump> tg=<pool-3-thread-3>       THEN>
+<INFO  17:08:56,992 SimpleNode::dump> tg=<pool-3-thread-3>        messageOut confirmation[Reserve=unset, Name=unset, AirlinePayment=unset] => a(travelAgency[],unset)>
+<INFO  17:08:56,993 SimpleNode::dump> tg=<pool-3-thread-3>         constraint createEticket[AirlinePayment=unset, Reserve=unset, Name=unset, CcNumber=unset, Eticket=unset]>
+<INFO  17:08:56,993 SimpleNode::dump> tg=<pool-3-thread-3>        THEN>
+<INFO  17:08:56,993 SimpleNode::dump> tg=<pool-3-thread-3>         messageOut responseAL[Eticket=unset] => a(traveler[],unset)>
+<INFO  17:08:56,994 SimpleNode::dump> tg=<pool-3-thread-3>         newRole a(airline[],unset)>
+<INFO  17:08:56,994 SimpleNode::dump> tg=<pool-3-thread-3>     THEN>
+<INFO  17:08:56,994 SimpleNode::dump> tg=<pool-3-thread-3>      messageIn notificationAL[Status=unset] => a(acquirer[],unset)>
+<INFO  17:08:56,995 SimpleNode::dump> tg=<pool-3-thread-3>       constraint emitNotificationAL[Status=unset, Eticket=unset]>
+<INFO  17:08:56,995 SimpleNode::dump> tg=<pool-3-thread-3>      THEN>
+<INFO  17:08:56,995 SimpleNode::dump> tg=<pool-3-thread-3>       messageOut responseAL[Eticket=unset] => a(traveler[],unset)>
+<INFO  17:08:56,995 SimpleNode::dump> tg=<pool-3-thread-3>       newRole a(airline[],unset)>
+<INFO  17:08:56,995 SimpleNode::dump> tg=<pool-3-thread-3>    THEN>
+<INFO  17:08:56,996 SimpleNode::dump> tg=<pool-3-thread-3>     messageIn cancel[Reserve=unset] => a(travelAgency[],unset)>
+<INFO  17:08:56,996 SimpleNode::dump> tg=<pool-3-thread-3>      constraint cancelReserve[Reserve=unset, Confirmation=unset]>
+<INFO  17:08:56,996 SimpleNode::dump> tg=<pool-3-thread-3>     THEN>
+<INFO  17:08:56,996 SimpleNode::dump> tg=<pool-3-thread-3>      messageOut response[Confirmation=unset] => a(travelAgency[],unset)>
+<INFO  17:08:56,997 SimpleNode::dump> tg=<pool-3-thread-3>      newRole a(airline[],unset)>
+<INFO  17:08:56,997 SimpleNode::dump> tg=<pool-3-thread-3>  clause a(acquirer[],unset)>
+<INFO  17:08:56,997 SimpleNode::dump> tg=<pool-3-thread-3>   THEN>
+<INFO  17:08:56,997 SimpleNode::dump> tg=<pool-3-thread-3>    messageIn check[Reserve=unset, Name=unset, CcNumber=unset, TotalPrice=unset] => a(travelAgency[],unset)>
+<INFO  17:08:56,997 SimpleNode::dump> tg=<pool-3-thread-3>    OR>
+<INFO  17:08:56,998 SimpleNode::dump> tg=<pool-3-thread-3>     THEN>
+<INFO  17:08:56,998 SimpleNode::dump> tg=<pool-3-thread-3>      messageOut approval[Status=unset, TravelAgencyPayment=unset] => a(travelAgency[],unset)>
+<INFO  17:08:56,998 SimpleNode::dump> tg=<pool-3-thread-3>       constraint countPayments[Reserve=unset, Name=unset, CcNumber=unset, TotalPrice=unset, Status=unset, TravelAgencyPayment=unset, AirlinePayment=unset]>
+<INFO  17:08:56,998 SimpleNode::dump> tg=<pool-3-thread-3>      THEN>
+<INFO  17:08:56,998 SimpleNode::dump> tg=<pool-3-thread-3>       messageOut payment[AirlinePayment=unset, Reserve=unset, Name=unset, CcNumber=unset] => a(airline[],unset)>
+<INFO  17:08:56,999 SimpleNode::dump> tg=<pool-3-thread-3>       newRole a(acquirer[],unset)>
+<INFO  17:08:56,999 SimpleNode::dump> tg=<pool-3-thread-3>     THEN>
+<INFO  17:08:56,999 SimpleNode::dump> tg=<pool-3-thread-3>      messageOut notificationTA[Status=unset] => a(travelAgency[],unset)>
+<INFO  17:08:56,999 SimpleNode::dump> tg=<pool-3-thread-3>       constraint verifyStatus[Status=unset]>
+<INFO  17:08:57,000 SimpleNode::dump> tg=<pool-3-thread-3>      THEN>
+<INFO  17:08:57,000 SimpleNode::dump> tg=<pool-3-thread-3>       messageOut notificationAL[Status=unset] => a(airline[],unset)>
+<INFO  17:08:57,000 SimpleNode::dump> tg=<pool-3-thread-3>       newRole a(acquirer[],unset)>
+<INFO  17:08:57,000 LCCInterpreterImpl::setModel> tg=<pool-3-thread-3> {travelAgency[]=RoleSemantics{role:travelAgency,type:necessary,min:1,max:1}, traveler[]=RoleSemantics{role:traveler,type:initial,min:1,max:1}, acquirer[]=RoleSemantics{role:acquirer,type:necessary,min:1,max:1}, airline[]=RoleSemantics{role:airline,type:necessary,min:1,max:1}}>
+<DEBUG 17:08:57,011 LCCModelAnalyser::analyseModel> tg=<pool-3-thread-3> Constraints for travelAgency are [registerUser(Name,CcNumber), searchResult(FlightStatus,FlightID,FlightPrice,AirlineName), buildResponse(FlightStatus,FlightID,FlightPrice,AirlineName), travelAgencyMakesAReservation(FlightID,TravelAgencyID), travelAgencyRegisterReservation(ReserveCost,Reserve), confirmCancellation(Reserve), catchUserData(Reserve,Name,CcNumber,TotalPrice), registerPayment(Status,TravelAgencyPayment), emitStatement(Reserve,Name,AirlinePayment,Statement), emitNotificationTA(Status,Statement)]>
+<DEBUG 17:08:57,011 LCCModelAnalyser::analyseModel> tg=<pool-3-thread-3> Constraints for traveler are [userInitiatesOrderTrip(Destination,Date,Name,CcNumber), flights(FlightStatus,FlightID,FlightPrice,AirlineName), userMakesAReservation(FlightID), reserve(Reserve), userMakesABook(Reserve), statement(Statement), eTicket(Eticket), userMakesACancellation(Reserve), cancellation(Confirmation)]>
+<DEBUG 17:08:57,011 LCCModelAnalyser::analyseModel> tg=<pool-3-thread-3> Constraints for acquirer are [countPayments(Reserve,Name,CcNumber,TotalPrice,Status,TravelAgencyPayment,AirlinePayment), verifyStatus(Status)]>
+<DEBUG 17:08:57,012 LCCModelAnalyser::analyseModel> tg=<pool-3-thread-3> Constraints for airline are [createResponse(Destination,Date,FlightStatus,FlightID,FlightPrice,AirlineName), createReserve(FlightID,TravelAgencyID,ReserveCost), createEticket(AirlinePayment,Reserve,Name,CcNumber,Eticket), emitNotificationAL(Status,Eticket), cancelReserve(Reserve,Confirmation)]>
+<DEBUG 17:08:57,013 LCCModelAnalyser::analyseModel> tg=<pool-3-thread-3> 
+
+*********** LCCModelImpl Statistics ***********
+ Number of Participants: 4
+ Participants' Roles: 
+   travelAgency = [travelAgency]
+   traveler = [traveler]
+   acquirer = [acquirer]
+   airline = [airline]
+ Participants' Constraints: 
+   travelAgency = [emitStatement(Reserve,Name,AirlinePayment,Statement), emitNotificationTA(Status,Statement), buildResponse(FlightStatus,FlightID,FlightPrice,AirlineName), catchUserData(Reserve,Name,CcNumber,TotalPrice), registerUser(Name,CcNumber), searchResult(FlightStatus,FlightID,FlightPrice,AirlineName), travelAgencyRegisterReservation(ReserveCost,Reserve), registerPayment(Status,TravelAgencyPayment), travelAgencyMakesAReservation(FlightID,TravelAgencyID), confirmCancellation(Reserve)]
+   traveler = [statement(Statement), userInitiatesOrderTrip(Destination,Date,Name,CcNumber), flights(FlightStatus,FlightID,FlightPrice,AirlineName), cancellation(Confirmation), eTicket(Eticket), userMakesACancellation(Reserve), userMakesAReservation(FlightID), userMakesABook(Reserve), reserve(Reserve)]
+   acquirer = [verifyStatus(Status), countPayments(Reserve,Name,CcNumber,TotalPrice,Status,TravelAgencyPayment,AirlinePayment)]
+   airline = [createResponse(Destination,Date,FlightStatus,FlightID,FlightPrice,AirlineName), createEticket(AirlinePayment,Reserve,Name,CcNumber,Eticket), cancelReserve(Reserve,Confirmation), createReserve(FlightID,TravelAgencyID,ReserveCost), emitNotificationAL(Status,Eticket)]
+ Participant incoming communications: 
+   travelAgency = [traveler, airline, acquirer]
+   traveler = [travelAgency, airline]
+   acquirer = [travelAgency]
+   airline = [travelAgency, acquirer]
+ Participant outgoing communications: 
+   travelAgency = [airline, traveler, acquirer]
+   traveler = [travelAgency]
+   acquirer = [travelAgency, airline]
+   airline = [travelAgency, traveler]
+ Role incoming communications: 
+   travelAgency = [traveler, acquirer, airline]
+   traveler = [travelAgency]
+   acquirer = [travelAgency, airline]
+   airline = [travelAgency, traveler]
+ Role outgoing communications: 
+   travelAgency = [traveler, airline, acquirer]
+   traveler = [travelAgency, airline]
+   acquirer = [travelAgency]
+   airline = [travelAgency, acquirer]
+****************************************
+>
+<DEBUG 17:08:57,181 MatchManager::getInputStream> tg=<pool-3-thread-3> Trying to load /WordNet/multiwords.hash from [jar]>
+<INFO  17:08:57,925 InteractionTask::processReceivedInteraction> tg=<pool-3-thread-3> >>> IM 528f5c7c7185c98b9a6ec5c3d6f58de8 will be processed>
+<INFO  17:08:57,925 InteractionTask::subscribe> tg=<pool-3-thread-3> >>> Will subscribe to 528f5c7c7185c98b9a6ec5c3d6f58de8>
+*** SUBSCRIBED! ***
+<WARN  17:08:58,238 DiagnosticModuleImpl::subscriptionAccepted> tg=<pool-3-thread-6> Warning: SubscriptionNegotiator EPID was not in listener map: {}>

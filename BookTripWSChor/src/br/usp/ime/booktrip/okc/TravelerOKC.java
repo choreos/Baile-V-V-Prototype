@@ -1,29 +1,40 @@
 package br.usp.ime.booktrip.okc;
 
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+
+import javax.swing.JOptionPane;
 
 import org.openk.core.OKC.impl.OKCFacadeImpl;
 import org.openk.core.module.interpreter.Argument;
 
 import br.usp.ime.booktrip.utils.MessageTrace;
 import br.usp.ime.booktrip.utils.MessageTraceQueue;
+import br.usp.ime.booktrip.utils.OKMessagesQueue;
 import br.usp.ime.ws.traveler.Request;
 import br.usp.ime.ws.traveler.TravelerWS;
 import br.usp.ime.ws.traveler.TravelerWSService;
 
 public class TravelerOKC extends OKCFacadeImpl {
-	TravelerWSService service;
-	TravelerWS stub;
-	ArrayList<String> orders = new ArrayList<String>();
-	ArrayList<String> reserves = new ArrayList<String>();
-	ArrayList<String> books = new ArrayList<String>();
-	ArrayList<String> cancellations = new ArrayList<String>();
-
+	private TravelerWSService service;
+	private TravelerWS stub;
+	private ArrayList<String> orders = new ArrayList<String>();
+	private BlockingQueue<String> flights = new LinkedBlockingQueue<String>();
+	private ArrayList<String> reserves = new ArrayList<String>();
+	private ArrayList<String> books = new ArrayList<String>();
+	private ArrayList<String> cancellations = new ArrayList<String>();
+	private OKMessagesQueue okQueue;
+	
 	public TravelerOKC() {
 		service = new TravelerWSService();
 		stub = service.getTravelerWSPort();
+		okQueue = new OKMessagesQueue();
+		
+
 	}
 
 	private void requestCollector() {
@@ -31,6 +42,10 @@ public class TravelerOKC extends OKCFacadeImpl {
 
 		if (incommingRequest.getOperation().equals("order"))
 			orders.add(incommingRequest.getMessage());
+		
+		if (incommingRequest.getOperation().equals("flights"))
+			flights.add(incommingRequest.getMessage());
+		
 
 		if (incommingRequest.getOperation().equals("reserve"))
 			reserves.add(incommingRequest.getMessage());
@@ -95,10 +110,17 @@ public class TravelerOKC extends OKCFacadeImpl {
 
 	public boolean flights(Argument FlightStatus, Argument FlightID,
 			Argument FlightPrice, Argument AirlineName) throws RemoteException {
+		if (flights.isEmpty())
+			return false;
+				
+		flights.remove(0);
+		
 		setResponse(FlightStatus.getValue().toString() + "|"
 				+ FlightID.getValue().toString() + "|"
 				+ FlightPrice.getValue().toString() + "|"
 				+ AirlineName.getValue().toString());
+		
+
 		return true;
 	}
 
@@ -143,6 +165,10 @@ public class TravelerOKC extends OKCFacadeImpl {
 			try {
 				Thread.sleep(2000);
 				incommingMessage = stub.getInData();
+				if (incommingMessage.getMessage() != null)
+					break;
+				
+				incommingMessage = okQueue.getInData();
 				if (incommingMessage.getMessage() != null)
 					break;
 			}

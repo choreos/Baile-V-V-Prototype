@@ -1,0 +1,16 @@
+Starting grizzly...
+Mar 15, 2011 5:08:18 PM com.sun.grizzly.Controller logVersion
+INFO: Starting Grizzly Framework 1.9.18-i - Tue Mar 15 17:08:18 BRT 2011
+Starting grizzly...
+Mar 15, 2011 5:08:20 PM com.sun.grizzly.Controller logVersion
+INFO: Starting Grizzly Framework 1.9.18-i - Tue Mar 15 17:08:20 BRT 2011
+Mar 15, 2011 5:11:49 PM com.sun.jersey.api.core.PackagesResourceConfig init
+INFO: Scanning for root resource and provider classes in the packages:
+  br.usp.ime.ws.travelagency
+Mar 15, 2011 5:11:49 PM com.sun.jersey.api.core.ScanningResourceConfig logClasses
+INFO: Root resource classes found:
+  class br.usp.ime.ws.travelagency.TravelAgencyWS
+Mar 15, 2011 5:11:49 PM com.sun.jersey.api.core.ScanningResourceConfig init
+INFO: No provider classes found.
+Mar 15, 2011 5:11:49 PM com.sun.jersey.server.impl.application.WebApplicationImpl _initiate
+INFO: Initiating Jersey application, version 'Jersey: 1.4 09/11/2010 10:30 PM'

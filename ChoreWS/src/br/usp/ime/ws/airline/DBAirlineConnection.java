@@ -33,6 +33,10 @@ public class DBAirlineConnection {
 		}
 	}
 	
+	public void close() throws SQLException{
+		conn.close();
+	}
+	
 	public void addFlight(FlightResult flight) {
 		try {
 			this.stm = this.conn.createStatement();

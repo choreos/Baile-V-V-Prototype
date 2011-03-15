@@ -1,6 +1,10 @@
 package br.usp.ime.booktrip.okc;
 
+import java.io.File;
+import java.sql.SQLException;
 import java.util.StringTokenizer;
+
+import javax.swing.JOptionPane;
 
 import org.openk.core.OKC.impl.OKCFacadeImpl;
 import org.openk.core.module.interpreter.Argument;
@@ -8,6 +12,7 @@ import org.openk.core.module.interpreter.Argument;
 import br.ime.usp.restclient.RESTClient;
 import br.usp.ime.booktrip.utils.MessageTrace;
 import br.usp.ime.booktrip.utils.MessageTraceQueue;
+import br.usp.ime.booktrip.utils.OKMessagesQueue;
 
 
 public class TravelAgencyOKC extends OKCFacadeImpl
@@ -15,11 +20,13 @@ public class TravelAgencyOKC extends OKCFacadeImpl
 	RESTClient client;
 	String name;
 	MessageTraceQueue queue;
+	OKMessagesQueue okQueue;
 
 	public TravelAgencyOKC(){
 		client = new RESTClient();
 		client.setBaseURL("http://localhost:9881/travelagency");
 		queue = new MessageTraceQueue();
+		okQueue = new OKMessagesQueue();
 	}
 
 	public boolean registerUser(Argument Name, Argument CcNumber){
@@ -35,6 +42,16 @@ public class TravelAgencyOKC extends OKCFacadeImpl
 						  FlightPrice.getValue() + "|" +
 						  AirlineName.getValue();
 		addMessageTraceQueue("airline", "travelAgency", "response", received);
+		return true;
+	}
+	
+	public boolean buildResponse(Argument FlightStatus, Argument FlightID, Argument FlightPrice, Argument AirlineName){
+		String received = FlightStatus.getValue() + "|" + 
+						  FlightID.getValue() + "|" + 
+						  FlightPrice.getValue() + "|" +
+						  AirlineName.getValue();		
+		okQueue.addMessage("flights");
+
 		return true;
 	}
 

@@ -63,9 +63,7 @@ public class BookPlanTripTest {
 		assertTrue(response.contains(eTicket));
 		assertTrue(response.contains(statement));
 	}
-	
-	
-	
+		
 	
 	@Test
 	public void shouldNotFoundAFlight() throws RemoteException{		

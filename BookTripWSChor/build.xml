@@ -34,8 +34,8 @@
 	<target name="compile" description="Compile all java classes">
 		<delete>
       			<fileset dir="${bindir}" includes="**/*.class" />
-    		</delete>
-
+    	</delete>
+	
 		<javac destdir="${bindir}">
 		<src path="${srcdir}" />
 		<classpath>

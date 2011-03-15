@@ -1,0 +1,164 @@
+<project name="bookTripChor" default="jar">
+
+	<property name="bindir" value="./bin" />
+	<property name="srcdir" value="./src" />
+	<property name="tstdir" value="./test" />
+	<property name="test_bin_dir" value="${bindir}" />
+	<property name="libdir" value="./lib" />
+	<property name="build"  value="./build" />
+	<property name="jarname" value="${build}/BookTrip.jar" />
+	<property name="OK-kernel" value="${libdir}/ok.jar" />
+	<property name="test.suite.name" value="br.usp.ime.test" />
+	<property name="test.reports" value="./test-reports" /> 
+
+	<path id="test.classpath">
+  		<pathelement location="${test_bin_dir}" />
+  		<pathelement location="${libdir}/junit.jar" />
+		<pathelement location="${libdir}/hamcrest-core-1.1.jar" />
+		<pathelement location="${libdir}/traveler-client.jar" />
+		<pathelement location="${libdir}/airline-client.jar" />
+		<pathelement location="${libdir}/brestclient.jar" />
+		<pathelement location="${libdir}/queue.jar" />
+		<fileset dir="${libdir}/chore-ws_lib">
+    			 <include name="*.jar"/>
+		</fileset>
+		<fileset dir="${libdir}/restclient_lib">
+    			 <include name="*.jar"/>
+		</fileset>
+		<fileset dir="${libdir}/smatch">
+    			 <include name="*.jar"/>
+		</fileset>
+	</path>
+
+
+	<target name="compile" description="Compile all java classes">
+		<delete>
+      			<fileset dir="${bindir}" includes="**/*.class" />
+    	</delete>
+	
+		<javac destdir="${bindir}">
+		<src path="${srcdir}" />
+		<classpath>
+                <fileset dir="${libdir}">
+                         <include name="**/*.jar"/>
+			 <exclude name="chore-ws.jar"/>
+                </fileset>
+		</classpath>
+	</javac>
+	</target>
+
+	<target name="jar"  description="Package classes into a .jar file" depends="compile">
+		<mkdir dir="${build}" />
+		<jar destfile="${jarname}" basedir="${bindir}" />
+	</target>
+
+  <target name="compile-tests" depends="clean-compile-test">
+    <javac srcdir="${tstdir}" destdir="${test_bin_dir}" includeAntRuntime="false">
+      <classpath refid="test.classpath"/>
+    </javac>
+  </target>
+
+  <target name="clean-compile-test">
+    <delete>
+      <fileset dir="${tstdir}" includes="**/*.class" />
+    </delete>
+  </target>
+	
+
+	<target name="runUnitTests" depends="compile-tests">
+  		<junit printsummary="yes" fork="yes" haltonfailure="no">
+    			<batchtest fork="yes"  todir="${test.reports}/unit" >
+                                <fileset dir="${test_bin_dir}" >
+                                        <include name="**/unit/*Test.class" />
+                                </fileset>
+                        </batchtest>
+    			<formatter type="xml"  />
+    			<classpath refid="test.classpath" />
+  		</junit>
+
+		<junitreport todir="${test.reports}/unit">
+   	        	<fileset dir="${test.reports}/unit">
+      				<include name="TEST-*.xml" />
+    			</fileset>
+    			<report todir="${test.reports}/unit" />
+  		</junitreport>
+		
+		<delete>
+		 	<fileset dir="${test.reports}/unit" includes="*.xml" />
+		</delete>
+	</target>
+
+        <target name="runIntegrationTests" depends="compile-tests">
+                <junit printsummary="yes" fork="yes" haltonfailure="no">
+                        <batchtest fork="yes"  todir="${test.reports}/integration" >
+                                <fileset dir="${test_bin_dir}" >
+                                        <include name="**/integration/*Test.class" />
+                                </fileset>
+                        </batchtest>
+			<formatter type="xml" />
+                        <classpath refid="test.classpath" />
+                </junit>
+
+		<junitreport todir="${test.reports}/integration">
+                	<fileset dir="${test.reports}/integration">
+                        	<include name="TEST-*.xml" />
+                	</fileset>
+                	<report todir="${test.reports}/integration" />
+                </junitreport>
+                
+                <delete>
+                        <fileset dir="${test.reports}/integration" includes="*.xml" />
+                </delete>
+        </target>
+
+        <target name="runAcceptanceTests" depends="compile-tests">
+                <junit printsummary="yes" fork="yes" haltonfailure="no">
+                        <batchtest fork="yes"  todir="${test.reports}/acceptance" >
+                                <fileset dir="${test_bin_dir}" >
+                                        <include name="**/acceptance/*Test.class" />
+                                </fileset>
+                        </batchtest>
+			<formatter type="xml" />
+                        <classpath refid="test.classpath" />
+                </junit>
+
+		<junitreport todir="${test.reports}/acceptance">
+                        <fileset dir="${test.reports}/acceptance">
+                                <include name="TEST-*.xml" />
+                        </fileset>
+                        <report todir="${test.reports}/acceptance" />
+                </junitreport>
+
+                <delete>
+                        <fileset dir="${test.reports}/acceptance" includes="*.xml" />
+                </delete>
+        </target>
+
+	<target name="runAllTests" depends="compile-tests">
+		<junit fork="yes" printsummary="yes" haltonfailure="no">
+      			<batchtest fork="yes"  todir="${test.reports}/all" >
+        			<fileset dir="${test_bin_dir}" >
+					<include name="**/*Test.class" />
+				</fileset>
+      			</batchtest>
+			<classpath refid="test.classpath" />
+                        <formatter type="xml" />
+    		</junit>
+
+		<junitreport todir="${test.reports}/all">
+                        <fileset dir="${test.reports}/all">
+                                <include name="TEST-*.xml" />
+                        </fileset>
+                        <report todir="${test.reports}/all" />
+                </junitreport>
+
+                <delete>
+                        <fileset dir="${test.reports}/all" includes="*.xml" />
+                </delete>
+	</target>
+
+	<target name="clean" description="Remove all compilation products to ensure a clean build">
+		<delete dir="${bindir}" />
+		<delete file="${jarname}" />
+	</target>
+</project>

@@ -16,6 +16,7 @@ LOG_ANT="log/ANT.log";
 LOG_DS="log/DS.log";
 LOG_WS="log/WS.log";
 LOG_QUEUE="log/Queue.log";
+LOG_OK_QUEUE="log/OKQueue.log";
 LOG_PEER_PUBLISHER="log/PeerPublisher.log";
 LOG_PEER_TRAVELER="log/Traveler.log";
 LOG_PEER_TRAVELAGENCY="log/TravelAgency.log";
@@ -34,6 +35,7 @@ CP="$CP_KERNEL:$CP_DEMO";
 # -------------------------------------------------
 ARGS_WS="-jar lib/chore-ws.jar ChoreWS all";
 ARGS_QUEUE="-cp $CP br.usp.ime.booktrip.utils.MessageTraceQueue"
+ARGS_OK_QUEUE="-cp $CP br.usp.ime.booktrip.utils.OKMessagesQueue"
 ARGS_DS="-cp $CP org.openk.service.discovery.StartDiscoveryAndStorage $IP 6678 6678 7000 true 10";
 ARGS_PEER_PUBLISHER="-cp $CP br.usp.ime.booktrip.peer.PeerPublisher -discovery-bootstrap-host $IP -port-number 5007 -userID PeerPublisher@openk.org";
 ARGS_PEER_TRAVELER="-cp $CP br.usp.ime.booktrip.peer.Traveler -discovery-bootstrap-host $IP -port-number 5008 -userID Traveler@openk.org";
@@ -85,6 +87,8 @@ verify "Starting" $LOG_WS
 # -------------------------------------------------
 echo -n "Starting message trace queue... "
 java $ARGS_QUEUE > $LOG_QUEUE 2>&1 &
+java -cp lib/chore-ws_lib/hsqldb.jar  org.hsqldb.Server -database.0 file:db/okQueue.hsqldb -dbname.0 okQueue.hsqldb  &
+java $ARGS_OK_QUEUE > $LOG_OK_QUEUE 2>&1 &
 sleep 5
 echo -e '\E[1;32mDone'; tput sgr0
 
