@@ -44,8 +44,7 @@ public class TravelerOKC extends OKCFacadeImpl {
 			orders.add(incommingRequest.getMessage());
 		
 		if (incommingRequest.getOperation().equals("flights"))
-			flights.add(incommingRequest.getMessage());
-		
+			flights.add(incommingRequest.getMessage());	
 
 		if (incommingRequest.getOperation().equals("reserve"))
 			reserves.add(incommingRequest.getMessage());
